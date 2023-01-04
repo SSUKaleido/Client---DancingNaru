@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundAnimation : MonoBehaviour
 {
-    float x, y, z;
+    public float turnSpeed = 40.0f;
     public float upSpeed = 5.0f;
 
 
@@ -21,15 +21,7 @@ public class BackgroundAnimation : MonoBehaviour
     }
     void FlyAway()
     {
-        // transform.Translate(new Vector3(0,1,0) * upSpeed *  Time.deltaTime);
-
-        transform.Rotate(new Vector3(5,5,5) * Time.deltaTime);
-        
-        // x += 50 * Time.deltaTime;
-        // y += 50 * Time.deltaTime;
-        // z += 50 * Time.deltaTime;
-
-        
-        // transform.eulerAngles = new Vector3(x, 0, 0);
+        transform.Translate(Vector3.up * Time.deltaTime * upSpeed, Space.World);
+        transform.Rotate(new Vector3(turnSpeed, turnSpeed, turnSpeed) * Time.deltaTime);
     }
 }
