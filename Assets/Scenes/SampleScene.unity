@@ -180,11 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3466152439377924028, guid: f1c80704df6616246b4f4c7a091d6998, type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5384135233109102231, guid: f1c80704df6616246b4f4c7a091d6998, type: 3}
       propertyPath: upSpeed
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1c80704df6616246b4f4c7a091d6998, type: 3}
@@ -383,7 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d54643ac0ffcfb4cb8645f3951071df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upSpeed: 10
+  turnSpeed: 40
+  upSpeed: 2
 --- !u!54 &1197217271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -398,7 +399,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 10
   m_CollisionDetection: 0
 --- !u!1 &1320618390
 GameObject:

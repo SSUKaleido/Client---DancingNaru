@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundAnimation : MonoBehaviour
+public class BA_FlyAway : MonoBehaviour
 {
     public float turnSpeed = 40.0f;
-    public float upSpeed = 5.0f;
-
-
+    public float upSpeed = 2.0f;
     // Start is called before the first frame update
     void Start()
     {
