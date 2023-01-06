@@ -25,10 +25,10 @@ public class BA_CompUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ComeUp(targetValue_y);
+        ComeUp();
     }
 
-    void ComeUp(float Height)
+    void ComeUp()
     {
         if (transform.position.y < targetValue_y)
         {
