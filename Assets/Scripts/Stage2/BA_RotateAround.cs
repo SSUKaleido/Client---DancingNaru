@@ -6,9 +6,9 @@ public class BA_RotateAround : MonoBehaviour
 {
     public float speed = 150.0f; //speed 값이 양수이면 위로, 음수이면 아래로 이동
     public bool animationOn = false; // 숫자3 누르면 애니메이션 작동
-    private Vector3 rotationPoint = new Vector3(100,0,0);
+    public Vector3 rotationPoint = new Vector3(100,0,0);
     
-    private int waitingTime = 1; // 1초마다 회전
+    private int waitingTime = 1; // 1초마다 끊어서 회전
     private float timer = 0;
 
     // Start is called before the first frame update
