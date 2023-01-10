@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_GoDownOrUp : MonoBehaviour
+public class BA_UpOrDown : MonoBehaviour
 {
     public float speed = 1.0f; //speed 값이 양수이면 위로, 음수이면 아래로 이동
-    public bool animationOn = false; //숫자1 누르면 애니메이션 작동
+    private bool animationOn = false; //숫자1 누르면 애니메이션 작동
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,12 @@ public class BA_GoDownOrUp : MonoBehaviour
 
         if (animationOn == true)
         {
-            transform.Translate(new Vector3(0, speed, 0) * Time.deltaTime);
+            UpOrDown();
         }
+    }
+
+    void UpOrDown()
+    {
+        transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }

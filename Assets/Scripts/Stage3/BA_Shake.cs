@@ -5,8 +5,8 @@ using UnityEngine;
 public class BA_Shake : MonoBehaviour
 {
     public float speed = 10.0f;
-    public bool animationOn = false; // 숫자 2 누르면 애니메이션 작동
 
+    private bool animationOn = false; // 숫자 2 누르면 애니메이션 작동
     private Vector3 initialPos;
 
 
@@ -33,9 +33,15 @@ public class BA_Shake : MonoBehaviour
 
         if (animationOn == true)
         {
-            Vector3 currentPos = initialPos;
-            currentPos.x += 0.5f * Mathf.Sin(Time.time * speed);
-            transform.position = currentPos;
+            Shake();
         }
+    }
+
+    void Shake()
+    {
+        Vector3 currentPos = initialPos;
+
+        currentPos.x += 0.5f * Mathf.Sin(Time.time * speed);
+        transform.position = currentPos;
     }
 }

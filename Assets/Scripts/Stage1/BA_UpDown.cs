@@ -4,37 +4,55 @@ using UnityEngine;
 
 public class BA_UpDown : MonoBehaviour
 {
-    private GameObject mainRoad;
-    public float speed = 4.0f;
+    public float speed = 4.0f;  // 애니메이션 속도
+    public float upYPos = 0;    // upYPos까지 올라감  
+    public float downYPos = -2.0f;  // downYPos까지 내려옴
 
-    public float upYPos = 0; //최대로 위로 올라갔을 때 Y 위치   
-    public float downYPos = -2.0f; // 다시 내려왔을 때 Y 위치
-    public bool down = false;
+    private bool animationOn = false;   // 애니메이션 기능
+    private float yPos; // 오브젝트의 Y 위치값
+    private bool down = false;   //오브젝트가 upYPos까지 올라갔는지 확인   
 
     // Start is called before the first frame update
     void Start()
     {
-        mainRoad = GameObject.Find("MainRoad_UpDown");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y >= upYPos)
+
+        // 숫자 3 누르면 애니메이션 작동
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            animationOn = true;
+        }
+
+        if (animationOn == true)
+        {
+            UpDown();
+        }
+        
+    }
+
+    // 오브젝트의 위치가 upYPos까지 올라갔다가 downYPos까지 내려오는 애니메이션
+    void UpDown() 
+    {
+        yPos = transform.position.y;
+
+        if (yPos >= upYPos)
         {
             down = true;
         }
 
-        if (down == true && transform.position.y >= downYPos)
+        if (down == true && yPos >= downYPos)
         {
-            transform.Translate(new Vector3(0, -speed, 0) * Time.deltaTime);
+            transform.Translate(Vector3.down * speed * Time.deltaTime);
         }
 
-        else if (down == false && transform.position.y < upYPos)
+        else if (down == false && yPos < upYPos)
         {
-            transform.Translate(new Vector3(0, speed, 0) * Time.deltaTime);
+            transform.Translate(Vector3.up * speed * Time.deltaTime);
         }
-
-
     }
 }
