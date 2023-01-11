@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class BA_FlyAway : MonoBehaviour
+public class BA_FlyAway : BGAnimation
 {
     public float turnSpeed = 40.0f; // 오브젝트 회전하는 속도
     public float upSpeed = 4.0f;    // 오브젝트 상승하는 속도
@@ -24,13 +25,13 @@ public class BA_FlyAway : MonoBehaviour
         }
         if (animationOn == true)
         {
-            FlyAway();
+            TriggerAnimation();
         }
 
     }
 
     // 오브젝트가 회전하면서 날아가는 애니메이션
-    void FlyAway()
+    public override void TriggerAnimation()
     {
         yPos = transform.position.y;
 

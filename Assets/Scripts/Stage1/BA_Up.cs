@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_Up : MonoBehaviour
+public class BA_Up : BGAnimation
 {
     public float speed = 4.0f;
     public float upYPos;
@@ -25,11 +25,11 @@ public class BA_Up : MonoBehaviour
         }
         if (animationOn == true)
         {
-            Up();
+            TriggerAnimation();
         }
     }
     // 원하는 위치까지 올라가는 애니메이션
-    void Up() 
+    public override void TriggerAnimation() 
     {
         yPos = transform.position.y;
 
