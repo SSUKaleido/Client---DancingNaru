@@ -61,26 +61,20 @@ public class DataManager : MonoBehaviour
 
     void InitLocalData()
     {
-        print("Init Data!");
-        
         for (int i = 0; i < stageNum; i++)
         {
-            StageInfo stageInfo = new StageInfo();
-            stageInfo.StarCount = 0;
-            stageInfo.Cleared = false;
-            stageInfo.Opened = false;
-
+            StageInfo stageInfo = new StageInfo(0, false, false);
             StageInfos.Add(stageInfo);
         }
 
         StageInfos[0].Opened = true;
         SaveLocalData();
+        
+        print("Init Data!");
     }
 
     void LoadLocalData()
     {
-        print("Load Data!");
-        
         for (int i = 0; i < StageInfos.Count; i++)
         {
             string stageNum = i.ToString();
@@ -93,12 +87,12 @@ public class DataManager : MonoBehaviour
             StageInfos[i].Cleared = (clearedInfo == 1 ? true : false);
             StageInfos[i].Opened = (openedInfo == 1 ? true : false);
         }
+        
+        print("Load Data!");
     }
 
-    void SaveLocalData()
+    public void SaveLocalData()
     {
-        print("Saved Data!");
-        
         for (int i = 0; i < StageInfos.Count; i++)
         {
             string stageNum = i.ToString();
@@ -110,6 +104,8 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetInt(stageNum + clearKey, clearedInfo);
             PlayerPrefs.SetInt(stageNum + openedKey, openedInfo);
         }
+        
+        print("Saved Data!");
     }
 }
 
@@ -119,21 +115,40 @@ public class StageInfo
     private bool cleared;
     private bool opened;
 
+    public StageInfo(int stars, bool clear, bool open)
+    {
+        starsCount = stars;
+        cleared = clear;
+        opened = open;
+    }
+    
     public int StarCount
     {
         get { return starsCount; }
-        set { starsCount = value; }
+        set
+        {
+            starsCount = value;
+            DataManager.Instance.SaveLocalData();
+        }
     }
 
     public bool Cleared
     {
         get { return cleared; }
-        set { cleared = value; }
+        set
+        {
+            cleared = value; 
+            DataManager.Instance.SaveLocalData();
+        }
     }
 
     public bool Opened
     {
         get { return opened; }
-        set { opened = value; }
+        set
+        {
+            opened = value;
+            DataManager.Instance.SaveLocalData();
+        }
     }
 }
