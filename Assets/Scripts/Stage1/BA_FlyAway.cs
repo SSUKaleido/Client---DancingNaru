@@ -9,15 +9,13 @@ public class BA_FlyAway : MonoBehaviour
 
     private bool animationOn = false;   // 애니메이션 기능
     private float yPos; // 오브젝트의 Y 위치값
-    private float limitYPos = 10.0f;    // 오브젝트 제거되는 높이
+    private float limitYPos = 15.0f;    // 오브젝트 제거되는 높이
 
-    // Start is called before the first frame update
     void Start()
     {
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))

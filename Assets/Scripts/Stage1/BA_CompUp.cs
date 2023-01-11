@@ -13,14 +13,12 @@ public class BA_CompUp : MonoBehaviour
     private float groundYPos;   //지면의 Y위치
     private float targetValue_y;    //오브젝트가 올라와야하는 목표 Y위치
 
-    // Start is called before the first frame update
     void Start()
     {
         groundYPos = groundObject.GetComponent<Transform>().position.y + groundObject.GetComponent<Transform>().localScale.y / 2;
         targetValue_y = groundYPos + transform.localScale.y / 2;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //숫자 2 누르면 애니메이션 작동

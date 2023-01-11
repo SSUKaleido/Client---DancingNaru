@@ -321,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3466152439377924028, guid: f1c80704df6616246b4f4c7a091d6998, type: 3}
       propertyPath: m_Constraints
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5384135233109102231, guid: f1c80704df6616246b4f4c7a091d6998, type: 3}
       propertyPath: upSpeed
@@ -643,7 +643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -740,7 +740,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 10
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1001 &1387882411
 PrefabInstance:
@@ -1039,6 +1039,10 @@ PrefabInstance:
     - target: {fileID: 6817665899072575704, guid: c4638621fd918024e8c8e87cdcc7132a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817665899072575704, guid: c4638621fd918024e8c8e87cdcc7132a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4638621fd918024e8c8e87cdcc7132a, type: 3}
