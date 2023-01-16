@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class District : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        BGAnimation[] BgAnimations = GetComponentsInChildren<BGAnimation>();
+        print("District.cs의 OntriggerEnter() 실행");
+        BackgroundAnimation[] BgAnimations = GetComponentsInChildren<BackgroundAnimation>();
 
         for (int i = 0; i < BgAnimations.Length; i++)
         {
+            print(BgAnimations[i]);
             BgAnimations[i].TriggerAnimation();
         }
     }

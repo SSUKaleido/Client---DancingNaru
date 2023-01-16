@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_CompUp : MonoBehaviour
+public class BA_CompUp : BackgroundAnimation
 {
-    
+
     public float speed = 4.0f;  //오브젝트 올라오는 속도
     public GameObject groundObject;   //오브젝트의 지면
 
@@ -21,25 +21,21 @@ public class BA_CompUp : MonoBehaviour
 
     void Update()
     {
-        //숫자 2 누르면 애니메이션 작동
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            animationOn = true;
-        }
         if (animationOn == true)
         {
-            ComeUp();
+            yPos = transform.position.y;
+
+            if (yPos < targetValue_y)
+            {
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
         }
     }
 
     // 오브젝트가 속해있는 지면 높이에 맞춰 오브젝트가 올라오는 애니메이션
-    void ComeUp()
-    {
-        yPos = transform.position.y;
 
-        if (yPos < targetValue_y)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+    public override void TriggerAnimation()
+    {
+        animationOn = true;
     }
 }

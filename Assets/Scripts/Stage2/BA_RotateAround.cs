@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_RotateAround : MonoBehaviour
+public class BA_RotateAround : BackgroundAnimation
 {
     public float speed = 150.0f; //speed 값이 양수이면 위로, 음수이면 아래로 이동
     public bool animationOn = false; // 숫자3 누르면 애니메이션 작동
@@ -20,32 +20,20 @@ public class BA_RotateAround : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (animationOn == false)
-            {
-                animationOn = true;
-            }
-            else if (animationOn == true)
-            {
-                animationOn = false;
-            }
-        }
-
         if (animationOn == true)
         {
-            RotateAround();
+            timer = timer + Time.deltaTime;
+
+            if (timer > waitingTime)
+            {
+                transform.RotateAround(rotationPoint, Vector3.up, speed * Time.deltaTime);
+                timer = 0;
+            }
         }
     }
 
-    void RotateAround()
+    public override void TriggerAnimation()
     {
-        timer = timer + Time.deltaTime;
-
-        if (timer > waitingTime)
-        {
-            transform.RotateAround(rotationPoint, Vector3.up, speed * Time.deltaTime);
-            timer = 0;
-        }
+        animationOn = true;
     }
 }

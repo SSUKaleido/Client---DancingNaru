@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_Shake : MonoBehaviour
+public class BA_Shake : BackgroundAnimation
 {
     public float speed = 10.0f;
 
@@ -19,29 +19,17 @@ public class BA_Shake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (animationOn == false)
-            {
-                animationOn = true;
-            }
-            else if (animationOn == true)
-            {
-                animationOn = false;
-            }
-        }
-
         if (animationOn == true)
         {
-            Shake();
+            Vector3 currentPos = initialPos;
+
+            currentPos.x += 0.5f * Mathf.Sin(Time.time * speed);
+            transform.position = currentPos;
         }
     }
 
-    void Shake()
+    public override void TriggerAnimation()
     {
-        Vector3 currentPos = initialPos;
-
-        currentPos.x += 0.5f * Mathf.Sin(Time.time * speed);
-        transform.position = currentPos;
+        animationOn = true;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_UpDown : MonoBehaviour
+public class BA_UpDown : BackgroundAnimation
 {
     public float speed = 4.0f;  // 애니메이션 속도
     public float upYPos = 0;    // upYPos까지 올라감  
@@ -15,44 +15,37 @@ public class BA_UpDown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        // 숫자 3 누르면 애니메이션 작동
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            animationOn = true;
-        }
-
         if (animationOn == true)
         {
-            UpDown();
+            yPos = transform.position.y;
+
+            if (yPos >= upYPos)
+            {
+                down = true;
+            }
+
+            if (down == true && yPos >= downYPos)
+            {
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+            }
+
+            else if (down == false && yPos < upYPos)
+            {
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
         }
-        
+
     }
 
     // 오브젝트의 위치가 upYPos까지 올라갔다가 downYPos까지 내려오는 애니메이션
-    void UpDown() 
+    public override void TriggerAnimation()
     {
-        yPos = transform.position.y;
-
-        if (yPos >= upYPos)
-        {
-            down = true;
-        }
-
-        if (down == true && yPos >= downYPos)
-        {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
-        }
-
-        else if (down == false && yPos < upYPos)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+        animationOn = true;
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_DownUp : MonoBehaviour
+public class BA_DownUp : BackgroundAnimation
 {
     public float speed = 5.0f;
     public float upYPos = 0.5f; // 다시 위로 올라갔을 때 Y 위치   
@@ -21,34 +21,29 @@ public class BA_DownUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            animationOn = true;
-        }
-
         if (animationOn == true)
         {
-            DownUp();
+            yPos = transform.position.y;
+
+            if (yPos < downYPos)
+            {
+                up = true;
+            }
+
+            if (up == false && yPos >= downYPos)
+            {
+                transform.Translate(Vector3.down * speed * Time.deltaTime);
+            }
+
+            else if (up == true && yPos <= upYPos)
+            {
+                transform.Translate(Vector3.up * speed * Time.deltaTime);
+            }
         }
     }
 
-    void DownUp()
+    public override void TriggerAnimation()
     {
-        yPos = transform.position.y;
-
-        if (yPos < downYPos)
-        {
-            up = true;
-        }
-
-        if (up == false && yPos >= downYPos)
-        {
-            transform.Translate(Vector3.down * speed * Time.deltaTime);
-        }
-
-        else if (up == true && yPos <= upYPos)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
+        animationOn = true;
     }
 }
