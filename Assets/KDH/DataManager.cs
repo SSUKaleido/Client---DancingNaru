@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -9,6 +10,7 @@ public class DataManager : MonoBehaviour
     
     public int stageNum;
 
+    [SerializeField]
     public List<StageInfo> StageInfos = new List<StageInfo>();
 
     private const string starKey = "Star";
@@ -28,7 +30,8 @@ public class DataManager : MonoBehaviour
         
         CheckLocalDataExist();
     }
-
+    
+    // Deprecated
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -42,6 +45,9 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    ///   <para>Check if local data exists if local data don't exist init local data else load local data</para>
+    /// </summary>
     void CheckLocalDataExist()
     {
         // Check if project has local data
@@ -59,11 +65,14 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// <para>Init Local Data</para>
+    /// </summary>
     void InitLocalData()
     {
         for (int i = 0; i < stageNum; i++)
         {
-            StageInfo stageInfo = new StageInfo(0, false, false);
+            StageInfo stageInfo = new StageInfo(0, 0, false);
             StageInfos.Add(stageInfo);
         }
 
@@ -73,6 +82,9 @@ public class DataManager : MonoBehaviour
         print("Init Data!");
     }
 
+    /// <summary>
+    /// <para> Load Local data </para>
+    /// </summary>
     void LoadLocalData()
     {
         for (int i = 0; i < StageInfos.Count; i++)
@@ -81,16 +93,19 @@ public class DataManager : MonoBehaviour
 
             StageInfos[i].StarCount = PlayerPrefs.GetInt(stageNum + starKey);
 
-            int clearedInfo = PlayerPrefs.GetInt(stageNum + clearKey);
+            float clearedInfo = PlayerPrefs.GetFloat(stageNum + clearKey);
             int openedInfo = PlayerPrefs.GetInt(stageNum + openedKey);
 
-            StageInfos[i].Cleared = (clearedInfo == 1 ? true : false);
+            StageInfos[i].Cleared = clearedInfo;
             StageInfos[i].Opened = (openedInfo == 1 ? true : false);
         }
         
         print("Load Data!");
     }
 
+    /// <summary>
+    /// <para> Save Local data</para>
+    /// </summary>
     public void SaveLocalData()
     {
         for (int i = 0; i < StageInfos.Count; i++)
@@ -99,23 +114,32 @@ public class DataManager : MonoBehaviour
 
             PlayerPrefs.SetInt(stageNum + starKey, StageInfos[i].StarCount);
 
-            int clearedInfo = StageInfos[i].Cleared ? 1 : 0;
             int openedInfo = StageInfos[i].Opened ? 1 : 0;
-            PlayerPrefs.SetInt(stageNum + clearKey, clearedInfo);
+            PlayerPrefs.SetFloat(stageNum + clearKey, StageInfos[i].Cleared);
             PlayerPrefs.SetInt(stageNum + openedKey, openedInfo);
         }
         
         print("Saved Data!");
+    }
+
+    /// <summary>
+    /// <para> Load Stage Info in stage num return StageInfo </para>
+    /// </summary>
+    /// <param name="stageNum"></param>
+    public StageInfo LoadStageData(int stageNum)
+    {
+        return StageInfos[stageNum];
     }
 }
 
 public class StageInfo
 {
     private int starsCount;
-    private bool cleared;
+    private float cleared;
     private bool opened;
+    public Color stageColor;
 
-    public StageInfo(int stars, bool clear, bool open)
+    public StageInfo(int stars, float clear, bool open)
     {
         starsCount = stars;
         cleared = clear;
@@ -132,7 +156,7 @@ public class StageInfo
         }
     }
 
-    public bool Cleared
+    public float Cleared
     {
         get { return cleared; }
         set
