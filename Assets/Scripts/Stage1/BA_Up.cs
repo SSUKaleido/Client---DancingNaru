@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BA_Up : BackgroundAnimation
 {
-    public float speed = 4.0f;
+    public float speed = 7.5f;
     public float upYPos;
 
     private bool animationOn = false;

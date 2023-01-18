@@ -5,7 +5,7 @@ using UnityEngine;
 public class BA_CompUp : BackgroundAnimation
 {
 
-    public float speed = 4.0f;  //오브젝트 올라오는 속도
+    public float speed = 7.5f;  //오브젝트 올라오는 속도
     public GameObject groundObject;   //오브젝트의 지면
 
     private bool animationOn = false;   // 애니메이션 기능
@@ -15,16 +15,26 @@ public class BA_CompUp : BackgroundAnimation
 
     void Start()
     {
-        groundYPos = groundObject.GetComponent<Transform>().position.y + groundObject.GetComponent<Transform>().localScale.y / 2;
+        if (groundObject.GetComponent<BA_UpDown>() == true)
+        {
+            // 지면 오브젝트가 BA_UpDown에 의해 움직일 때
+            groundYPos = groundObject.GetComponent<BA_UpDown>().downYPos + groundObject.GetComponent<Transform>().localScale.y / 2;
+        }
+        else
+        {
+            // 지면 오브젝트가 움직이지 않을 때
+            groundYPos = groundObject.GetComponent<Transform>().position.y + groundObject.GetComponent<Transform>().localScale.y / 2;
+        }
+
         targetValue_y = groundYPos + transform.localScale.y / 2;
     }
 
     void Update()
     {
+        yPos = transform.position.y;
+        
         if (animationOn == true)
         {
-            yPos = transform.position.y;
-
             if (yPos < targetValue_y)
             {
                 transform.Translate(Vector3.up * speed * Time.deltaTime);

@@ -5,48 +5,75 @@ using UnityEngine;
 public class BA_GetUp : BackgroundAnimation
 {
     public float speed = 150.0f; //speed 값이 양수이면 위로, 음수이면 아래로 이동
+    public Vector3 rotationPoint = new Vector3(100, 0, 0);
 
-    private float maxZ = 0;
-    private float minZ = -0.73f;
-    private bool animationOn = false; // 숫자3 누르면 애니메이션 작동
-    private Vector3 rotationPoint = new Vector3(100, 0, 0);
+    private float upValue = 0;
+    public float downValue;
+    private bool animationOn = false;
+
     private bool back = false;
-    private float zRotation;
+    public float zRotation;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        downValue = transform.rotation.z;
     }
 
     // Update is called once per frame
     void Update()
     {
+        zRotation = transform.rotation.z;
+
         if (animationOn == true)
         {
-            zRotation = transform.rotation.z;
+            // zRotation이 양수인 경우
+            if (downValue > 0)
+            {
+                if (zRotation <= upValue)
+                {
+                    back = true;
+                }
 
-            if (zRotation >= maxZ)
-            {
-                back = true;
-            }
-            else if (zRotation <= minZ)
-            {
-                animationOn = false;
-                back = false;
+                if (back == false && zRotation >= upValue)
+                {
+                    transform.RotateAround(rotationPoint, Vector3.left, speed * Time.deltaTime);
+                }
+                else if (back == true & zRotation <= downValue)
+                {
+                    transform.RotateAround(rotationPoint, Vector3.right, speed * Time.deltaTime);
+                }
             }
 
-            if (back == false && zRotation <= maxZ)
+            // zRotation이 양수인 경우
+            if (downValue < 0)
             {
-                transform.RotateAround(rotationPoint, Vector3.forward, speed * Time.deltaTime);
+                if (zRotation >= upValue)
+                {
+                    back = true;
+                }
+
+                if (back == false && zRotation <= upValue)
+                {
+                    transform.RotateAround(rotationPoint, Vector3.right, speed * Time.deltaTime);
+                }
+                else if (back == true & zRotation >= downValue)
+                {
+                    transform.RotateAround(rotationPoint, Vector3.left, speed * Time.deltaTime);
+                }
             }
-            else if (back == true && zRotation > minZ)
-            {
-                transform.RotateAround(rotationPoint, Vector3.back, speed * Time.deltaTime);
-            }
+
+            // if (back == false && zRotation <= maxZ)
+            // {
+            //     transform.RotateAround(rotationPoint, Vector3.right, speed * Time.deltaTime);
+            // }
+            // else if (back == true && zRotation >= minZ)
+            // {
+            //     transform.RotateAround(rotationPoint, Vector3.left, speed * Time.deltaTime);
+            // }
         }
     }
-    
+
     public override void TriggerAnimation()
     {
         animationOn = true;
