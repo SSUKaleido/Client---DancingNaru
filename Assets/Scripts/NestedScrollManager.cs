@@ -14,14 +14,29 @@ public class NestedScrollManager : MonoBehaviour, IBeginDragHandler, IDragHandle
     void Start()
     {
         // 거리에 따라 0~1인 pos 대입
-        distance = 26f;
-        //for (int i = 0; i < SIZE; i++) { pos[i] = distance * i; }
-
-        pos[0] = 0.12f;
-        pos[1] = 0.38f;
-        pos[2] = 0.64f;
-        pos[3] = 0.90f;
-        pos[4] = 1f;
+        // distance = 1f / (SIZE - 1);
+        /*
+        distance = 0.182243f;
+        pos[0] = 0.7313084f;
+        pos[1] = 0.5490654f;
+        pos[2] = 0.3668224f;
+        pos[3] = 0.1845794f;
+        pos[4] = 0.0023364f;
+        */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -36,7 +51,7 @@ public class NestedScrollManager : MonoBehaviour, IBeginDragHandler, IDragHandle
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+ 
     }
 
     void Update()
