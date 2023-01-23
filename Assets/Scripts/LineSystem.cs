@@ -11,16 +11,19 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class LineSystem : MonoBehaviour
 {
-    [Tooltip("게임의 진행 속도입니다. 방향 변환 지점 계산에 사용됩니다.")]
+    [Tooltip("True: Trun on MeshRenderer | False: Turn off MeshRenderer")]
+    public bool showRoad = false;
+
+    [Tooltip("Used to calculate the TurningPoint's Position")]
     public float gameSpeed;
 
-    [Tooltip("입력 제한 시간입니다. 길의 넓이를 결정합니다.")]
+    [Tooltip("Used to calculate the width of the road.")]
     public float allowedTouchTime;
 
     /*[Tooltip("")]
     public GameObject RoadPrefap;*/ // 추후에 방식을 정해서 개발 예정
     
-    [Tooltip("원하는 타이밍의 초를 입력하고 Assets/Scenes에서 해당 Scene을 더블클릭하면 방향 변환 지점이 하위 오브젝트로 생성됩니다.")]
+    [Tooltip("Enter the desired timing seconds and double-click the scene in Assets/Scenes to create a TurningPoint as a sub-object.")]
     public List<float> timeLine = new List<float>();
 
     //변환점 리스트
@@ -32,21 +35,23 @@ public class LineSystem : MonoBehaviour
     public List<GameObject> RoadObj = new List<GameObject>();
 
 
-    Vector3 beforePos; // 이전 터닝포인트 좌표
-    float beforeTime; // 이전 타임라인
-    int needDataNum; // 불필요한 데이터 갯수
+    Vector3 beforePos; // before turningpoint position
+    float beforeTime; // before timeline
+    int needDataNum; // needed count of data
+
     // Update is called once per frame
     void Awake()
     {
         beforePos = Vector3.zero;
         beforeTime = 0;
 
-        if (CheckPointDataIsntNull()) // 터닝포인트에 Null값이 없는지 체크
+        if (CheckPointDataIsntNull()) // Check if there is no null value at the turning point
         {
             Debug.Log("No Wrong Data");
         }
 
-        if (timeLine.Count < TurningPoint.Count - 1) // 타임라인이 삭제되었을 경우 자동으로 터닝포인트 삭제
+        if (timeLine.Count < TurningPoint.Count - 1) // Automatically delete turning point when timeline is deleted
+
         {
             while (TurningPoint.Count - 1 > timeLine.Count)
             {
@@ -54,8 +59,8 @@ public class LineSystem : MonoBehaviour
             }
         }
 
-        if (RoadObj.Count > 0 && RoadObj.Count > TurningPoint.Count - 1) // 터닝포인트가 삭제되었을 경우 자동으로 길 삭제
-        {
+        if (RoadObj.Count > 0 && RoadObj.Count > TurningPoint.Count - 1) // Automatically delete road object when turning point is deleted
+            {
             while (RoadObj.Count > TurningPoint.Count - 1)
             {
                 DestroyImmediate(RoadObj[RoadObj.Count - 1]);
@@ -63,12 +68,12 @@ public class LineSystem : MonoBehaviour
             }
         }
 
-        if (TurningPoint.Count == 0) // 시작지점 생성
+        if (TurningPoint.Count == 0) // Create StartPoint
         {
             TurningPoint.Add(Vector3.zero);
         }
 
-        if (timeLine.Count > (TurningPoint.Count - 1))// 타임라인 리스트의 데이터 갯수가 터닝포인트 리스트의 시작지점을 제외한데이터 개수보다 많을경우 터닝포인트 추가
+        if (timeLine.Count > (TurningPoint.Count - 1))//If the number of data in the timeline list is greater than the number of data excluding the starting point of the turning point list, add a turning point
         {
             needDataNum = timeLine.Count - (TurningPoint.Count - 1);
             for (int i = 0; i < needDataNum; i++)
@@ -77,7 +82,7 @@ public class LineSystem : MonoBehaviour
             }
         }
 
-        if (timeLine.Count == TurningPoint.Count - 1) // 터닝포인트 좌표 계산
+        if (timeLine.Count == TurningPoint.Count - 1) // Calculate TurningPoint Position
         {
             beforePos = TurningPoint[0];
             for (int i = 0; i < timeLine.Count; i++)
@@ -94,7 +99,7 @@ public class LineSystem : MonoBehaviour
             }
         }
 
-        if (RoadObj.Count < TurningPoint.Count - 1) // 터닝포인트가 추가되었을 경우 길 추가
+        if (RoadObj.Count < TurningPoint.Count - 1) // Add a road when a turning point is added
         {
             needDataNum = (TurningPoint.Count - 1) - RoadObj.Count;
             for (int i = 0; i < needDataNum; i++)
@@ -104,7 +109,7 @@ public class LineSystem : MonoBehaviour
         }
 
 
-        if (RoadObj.Count == TurningPoint.Count - 1) // 길 오브젝트 좌표 및 스케일 계산
+        if (RoadObj.Count == TurningPoint.Count - 1) // Calculate road object position and scale
         {
             beforePos = TurningPoint[0];
             for (int i = 0; i < RoadObj.Count; i++)
@@ -122,25 +127,49 @@ public class LineSystem : MonoBehaviour
                 beforePos = TurningPoint[i + 1];
             }
         }
+
+        
     }
 
-    bool CheckPointDataIsntNull() // 길 오브젝트 리스트에 값이 제대로 들어있는지 확인
+    void Update()
+    {
+        if (RoadObj.Count > 0) // Road visible system
+        {
+            if (showRoad == false)
+            {
+                for (int i = 0; i < RoadObj.Count; i++)
+                {
+                    RoadObj[i].GetComponent<MeshRenderer>().enabled = false;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < RoadObj.Count; i++)
+                {
+                    RoadObj[i].GetComponent<MeshRenderer>().enabled = true;
+                }
+            }
+        }
+        
+    }
+
+    bool CheckPointDataIsntNull() // Check if the value is properly included in the list of road objects
     {
         for (int i = 0; i < RoadObj.Count; i++)
         {
-            if (RoadObj[i])
+            if (RoadObj[i]) // Initialize if there is a null value
             {
                 continue;
             }
             ResetPointData();
-            ResetRoadData();// null값이 있을 경우 초기화
+            ResetRoadData();
             Debug.Log("Wrong Data Is Deleted");
             return false;
         }
         return true;
     }
 
-    void ResetPointData() // 터닝포인트 초기화
+    void ResetPointData() // Turning point reset
     {
         while (TurningPoint.Count > 0)
         {
@@ -148,7 +177,7 @@ public class LineSystem : MonoBehaviour
         }
     }
 
-    void ResetRoadData() // 길 초기화
+    void ResetRoadData() // Road reset
     {
         while (RoadObj.Count > 0)
         {
