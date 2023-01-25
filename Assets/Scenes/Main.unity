@@ -177,6 +177,7 @@ GameObject:
   - component: {fileID: 689494359}
   - component: {fileID: 689494358}
   - component: {fileID: 689494357}
+  - component: {fileID: 689494360}
   m_Layer: 5
   m_Name: Map1
   m_TagString: Untagged
@@ -193,7 +194,7 @@ RectTransform:
   m_GameObject: {fileID: 689494355}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 800.00006, y: 500, z: 500}
+  m_LocalScale: {x: 900, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366902280}
@@ -267,6 +268,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689494355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &689494360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689494355}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1fc428df65e954b8e37f15f26aa4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 826825946}
 --- !u!1 &826825944
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.00390625, y: -1920.0007}
   m_SizeDelta: {x: 20, y: -17}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &826825946
@@ -350,8 +364,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860214638}
   m_HandleRect: {fileID: 860214637}
   m_Direction: 2
-  m_Value: 0.0000000782502
-  m_Size: 0.38095126
+  m_Value: -0.0000000782502
+  m_Size: 0.3809524
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -482,6 +496,7 @@ GameObject:
   - component: {fileID: 1007678374}
   - component: {fileID: 1007678373}
   - component: {fileID: 1007678372}
+  - component: {fileID: 1007678375}
   m_Layer: 5
   m_Name: Map4
   m_TagString: Untagged
@@ -498,7 +513,7 @@ RectTransform:
   m_GameObject: {fileID: 1007678370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 800.00006, y: 500, z: 500}
+  m_LocalScale: {x: 900, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366902280}
@@ -572,6 +587,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007678370}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1007678375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1007678370}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1fc428df65e954b8e37f15f26aa4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 826825946}
 --- !u!1 &1203183127
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +612,7 @@ GameObject:
   - component: {fileID: 1203183131}
   - component: {fileID: 1203183130}
   - component: {fileID: 1203183129}
+  - component: {fileID: 1203183132}
   m_Layer: 5
   m_Name: Map5
   m_TagString: Untagged
@@ -600,7 +629,7 @@ RectTransform:
   m_GameObject: {fileID: 1203183127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 800.00006, y: 500, z: 500}
+  m_LocalScale: {x: 900, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366902280}
@@ -674,6 +703,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203183127}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1203183132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203183127}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1fc428df65e954b8e37f15f26aa4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 826825946}
 --- !u!1 &1258889058
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,9 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollbar: {fileID: 826825946}
-  scrollRect: {fileID: 1258889060}
-  to: 0.5
-  moveTime: 0.05
+  moveTime: 0.26
 --- !u!1 &1299524116
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3120}
+  m_AnchoredPosition: {x: 0, y: 3120.0002}
   m_SizeDelta: {x: 1063, y: 5040}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1407077778
@@ -947,6 +987,7 @@ GameObject:
   - component: {fileID: 1407077782}
   - component: {fileID: 1407077781}
   - component: {fileID: 1407077780}
+  - component: {fileID: 1407077783}
   m_Layer: 5
   m_Name: Map3
   m_TagString: Untagged
@@ -963,7 +1004,7 @@ RectTransform:
   m_GameObject: {fileID: 1407077778}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 800.00006, y: 500, z: 500}
+  m_LocalScale: {x: 900, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366902280}
@@ -1037,6 +1078,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1407077778}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1407077783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407077778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1fc428df65e954b8e37f15f26aa4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 826825946}
 --- !u!1 &1453790403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,6 +1255,7 @@ GameObject:
   - component: {fileID: 1602323992}
   - component: {fileID: 1602323991}
   - component: {fileID: 1602323990}
+  - component: {fileID: 1602323993}
   m_Layer: 5
   m_Name: Map2
   m_TagString: Untagged
@@ -1217,7 +1272,7 @@ RectTransform:
   m_GameObject: {fileID: 1602323988}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 800.00006, y: 500, z: 500}
+  m_LocalScale: {x: 900, y: 500, z: 500}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1366902280}
@@ -1291,6 +1346,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602323988}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1602323993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1602323988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1fc428df65e954b8e37f15f26aa4a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollbar: {fileID: 826825946}
 --- !u!1 &1919781144
 GameObject:
   m_ObjectHideFlags: 0
