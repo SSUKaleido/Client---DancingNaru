@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    private Vector3 pos;
     public GameObject player;
     public float speed = 5.0f;
     private Vector3 offset;
@@ -16,12 +17,18 @@ public class CameraController : MonoBehaviour
     public bool isZoom = false;
     public float zoomValue = 1;
 
-    public bool isPan = false;
-    public float panValue = 0;
+    public bool isPanRight = false;
+    public float panRightValue = 0;
+    public bool isPanLeft = false;
+    public float panLeftValue = 0;
 
-    public bool isDown = false;
-    
+    public bool isTiltUp = false;
+    public float tiltUpValue = 0;
+    public bool isTiltDown = false;
+    public float tiltDownValue = 0;
 
+    public bool isBoom = false;
+    public float boomValue = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +36,13 @@ public class CameraController : MonoBehaviour
         mainCamera = transform.GetChild(0).gameObject;
         initialCameraPos = mainCamera.transform.localPosition;
 
+        pos = transform.position;
         offset = transform.position - player.transform.position;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        //pos = transform.eulerAngles.x;
-
         if (isFollowing == true)
         {
             Following();
@@ -47,15 +53,30 @@ public class CameraController : MonoBehaviour
             Zoom();
         }
 
-        if (isPan == true)
+        if (isPanRight == true)
         {
-            Pan();
+            PanRight();
         }
-        
-        // if (isDown == true)
-        // {
-        //     Down();
-        // }
+
+        if (isPanLeft == true)
+        {
+            PanLeft();
+        }
+
+        if (isTiltUp == true)
+        {
+            TiltUp();
+        }
+
+        if (isTiltDown == true)
+        {
+            TiltDown();
+        }
+
+        if (isBoom == true)
+        {
+            Boom();
+        }
     }
 
     void Following()
@@ -64,40 +85,112 @@ public class CameraController : MonoBehaviour
     }
 
     // zoomValue가 1 이상이면 줌인, 1 이하이면 줌아웃
-    void Zoom() 
+    void Zoom()
     {
-        
+
         if (zoomValue >= 1 && mainCamera.transform.localPosition.z <= initialCameraPos.z / zoomValue)
         {
             mainCamera.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
         }
         else if (zoomValue <= 1 && mainCamera.transform.localPosition.z >= initialCameraPos.z / zoomValue)
         {
             mainCamera.transform.Translate(Vector3.back * speed * Time.deltaTime);
         }
-
     }
-    void Pan()
+
+    void PanRight()
     {
-        if (panValue >= 0 && transform.eulerAngles.y <= panValue)
+        float rotationY = Mathf.Round(transform.eulerAngles.y);
+        // 현재 각도가 원하는 각도보다 큰 경우 360도까지 회전
+        if (rotationY > panRightValue && rotationY <= 360)
         {
             transform.Rotate(Vector3.up * Time.deltaTime * speed);
         }
-        else if (panValue <= 0 && transform.eulerAngles.y >= panValue)
+
+        if (rotationY < panRightValue)
         {
-            transform.Rotate(Vector3.down * Time.deltaTime * speed);
+            transform.Rotate(Vector3.up * Time.deltaTime * speed);
+            if (rotationY >= panRightValue)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, panRightValue, transform.eulerAngles.z);
+            }
         }
     }
 
-    // void Down() // stage2 00:38
-    // {
+    void PanLeft()
+    {
+        float rotationY = Mathf.Round(transform.eulerAngles.y);
+        // 현재 각도가 원하는 각도보다 작은 경우 0도까지 회전
+        if (rotationY < panLeftValue && rotationY >= 0)
+        {
+            transform.Rotate(Vector3.down * Time.deltaTime * speed);
+        }
 
-    //     if (transform.eulerAngles.x >= 350 | transform.eulerAngles.x == 0)
-    //     {
-    //         print("!");
-    //         transform.Rotate(Vector3.left * 5 * Time.deltaTime);
-    //     }
+        if (rotationY > panLeftValue)
+        {
+            transform.Rotate(Vector3.down * Time.deltaTime * speed);
+            if (rotationY <= panLeftValue)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, panLeftValue, transform.eulerAngles.z);
+            }
+        }
+    }
 
-    // }
+    void TiltUp()
+    {
+        float rotationX = Mathf.Round(transform.eulerAngles.x);
+        print(rotationX);
+
+        if (rotationX < tiltUpValue && rotationX >= 0)
+        {
+            transform.Rotate(Vector3.left * Time.deltaTime * speed);
+        }
+
+        if (rotationX > tiltUpValue)
+        {
+            transform.Rotate(Vector3.left * Time.deltaTime * speed);
+            if (rotationX <= tiltUpValue)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, tiltUpValue, transform.eulerAngles.z);
+            }
+        }
+    }
+
+    void TiltDown()
+    {
+        float rotationX = Mathf.Round(transform.eulerAngles.x);
+        print(rotationX);
+
+        if (rotationX > tiltDownValue && rotationX <= 360)
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * speed);
+        }
+
+        if (rotationX < tiltDownValue)
+        {
+            transform.Rotate(Vector3.right * Time.deltaTime * speed);
+            if (rotationX >= tiltDownValue)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, tiltDownValue, transform.eulerAngles.z);
+            }
+        }
+    }
+
+    void Boom()
+    {
+        float positionY = Mathf.Round(transform.position.y);
+        if (positionY < boomValue)
+        {
+            offset = offset + (Vector3.up * speed * Time.deltaTime);
+            // mainCamera.transform.Translate(Vector3.up * speed * Time.deltaTime);
+        }
+
+        else if (positionY > boomValue)
+        {
+            offset = offset + (Vector3.down * speed * Time.deltaTime);
+            // mainCamera.transform.Translate(Vector3.down * speed * Time.deltaTime);
+        }
+    }
 
 }
