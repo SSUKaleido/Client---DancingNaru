@@ -11,24 +11,17 @@ public class CameraController : MonoBehaviour
     private GameObject mainCamera;
     private Vector3 initialCameraPos;
 
-
-    public bool isFollowing = true;
-
-    public bool isZoom = false;
     public float zoomValue = 1;
-
-    public bool isPanRight = false;
     public float panRightValue = 0;
-    public bool isPanLeft = false;
     public float panLeftValue = 0;
 
-    public bool isTiltUp = false;
     public float tiltUpValue = 0;
-    public bool isTiltDown = false;
     public float tiltDownValue = 0;
 
-    public bool isBoom = false;
     public float boomValue = 0;
+
+    public enum CameraState  {Following, Zoom, PanRight, PanLeft, TiltUp, TiltDown, Boom};
+    public CameraState state;
 
     // Start is called before the first frame update
     void Start()
@@ -43,39 +36,35 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (isFollowing == true)
+        switch(state)
         {
-            Following();
-        }
+            case CameraState.Following:
+                Following();
+                break;
 
-        if (isZoom == true)
-        {
-            Zoom();
-        }
+            case CameraState.Zoom:
+                Zoom();
+                break;
 
-        if (isPanRight == true)
-        {
-            PanRight();
-        }
+            case CameraState.PanRight:
+                PanRight();
+                break;
 
-        if (isPanLeft == true)
-        {
-            PanLeft();
-        }
+            case CameraState.PanLeft:
+                PanLeft();
+                break;
 
-        if (isTiltUp == true)
-        {
-            TiltUp();
-        }
+            case CameraState.TiltUp:
+                TiltUp();
+                break;
 
-        if (isTiltDown == true)
-        {
-            TiltDown();
-        }
+            case CameraState.TiltDown:
+                TiltDown();
+                break;
 
-        if (isBoom == true)
-        {
-            Boom();
+            case CameraState.Boom:
+                Boom();
+                break;
         }
     }
 
@@ -87,7 +76,6 @@ public class CameraController : MonoBehaviour
     // zoomValue가 1 이상이면 줌인, 1 이하이면 줌아웃
     void Zoom()
     {
-
         if (zoomValue >= 1 && mainCamera.transform.localPosition.z <= initialCameraPos.z / zoomValue)
         {
             mainCamera.transform.Translate(Vector3.forward * speed * Time.deltaTime);
