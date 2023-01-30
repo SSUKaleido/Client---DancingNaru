@@ -9,9 +9,10 @@ public class CameraController : MonoBehaviour
     public float speed = 5.0f;
     private Vector3 offset;
     private GameObject mainCamera;
+    private Camera cameraComponent;
     private Vector3 initialCameraPos;
 
-    public float zoomValue = 1;
+    public float zoomValue;
     public float panRightValue = 0;
     public float panLeftValue = 0;
 
@@ -27,6 +28,9 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         mainCamera = transform.GetChild(0).gameObject;
+        cameraComponent = mainCamera.GetComponent<Camera>();
+        zoomValue = mainCamera.GetComponent<Camera>().fieldOfView;
+        
         initialCameraPos = mainCamera.transform.localPosition;
 
         pos = transform.position;
@@ -76,15 +80,7 @@ public class CameraController : MonoBehaviour
     // zoomValue가 1 이상이면 줌인, 1 이하이면 줌아웃
     void Zoom()
     {
-        if (zoomValue >= 1 && mainCamera.transform.localPosition.z <= initialCameraPos.z / zoomValue)
-        {
-            mainCamera.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-        }
-        else if (zoomValue <= 1 && mainCamera.transform.localPosition.z >= initialCameraPos.z / zoomValue)
-        {
-            mainCamera.transform.Translate(Vector3.back * speed * Time.deltaTime);
-        }
+        cameraComponent.fieldOfView = Mathf.Lerp(cameraComponent.fieldOfView, zoomValue, speed * Time.deltaTime * 0.01f);
     }
 
     void PanRight()
