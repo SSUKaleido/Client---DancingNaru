@@ -12,6 +12,8 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
     private const int SIZE = 5;
     private float[] pos = new float[SIZE];
     private float distance;
+    public float moveTime = 1f;
+    private float curTime;
 
     private void Awake()
     {
@@ -39,8 +41,6 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
             }
     }
     
-    public float moveTime = 1f;
-    private float curTime;
     IEnumerator CoMoveScrollRect(float to)
     {
         curTime = 0f;

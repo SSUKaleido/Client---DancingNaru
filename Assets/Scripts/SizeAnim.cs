@@ -16,16 +16,15 @@ public class SizeAnim : MonoBehaviour
     private Vector3 originScale;
     private Vector3 firstScale;
     private Vector3 localScale = new Vector3(780f, 100f, 600f);
-
+    
     void Start()
     {
         originScale = transform.localScale;
         firstScale = localScale * 0.58f;
 
-
         if (this.GameObject() != GameObject.Find("Map1"))
             transform.localScale = firstScale;
-
+        
         pos[0] = 0f;
         pos[1] = 0.25f;
         pos[2] = 0.5f;
@@ -121,6 +120,5 @@ public class SizeAnim : MonoBehaviour
                 yield return null;
             }
         }
-        
     }
 }
