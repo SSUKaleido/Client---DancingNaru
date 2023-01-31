@@ -12,8 +12,6 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
     private const int SIZE = 5;
     private float[] pos = new float[SIZE];
     private float distance;
-    public float moveTime = 1f;
-    private float curTime;
 
     private void Awake()
     {
@@ -23,6 +21,7 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
     void Start()
     {
         distance = 0.25f; // 맵 중앙 피봇 사이 거리
+        
         // 각 맵이 중앙으로 포커싱 될때 scrollbar value 값
         pos[0] = 0f;
         pos[1] = 0.25f;
@@ -41,6 +40,8 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
             }
     }
     
+    public float moveTime = 1f;
+    private float curTime;
     IEnumerator CoMoveScrollRect(float to)
     {
         curTime = 0f;
