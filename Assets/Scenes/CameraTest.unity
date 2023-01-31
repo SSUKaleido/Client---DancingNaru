@@ -554,11 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 401661040}
-  speed: 50
+  speed: 5
   zoomValue: 60
-  panRightValue: 0
-  panLeftValue: 0
-  tiltUpValue: 0
-  tiltDownValue: 0
+  panValue: 0
+  tiltValue: 0
   boomValue: 0
   state: 0

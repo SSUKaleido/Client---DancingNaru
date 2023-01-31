@@ -14,13 +14,11 @@ public class CameraController : MonoBehaviour
 
     public float zoomValue;
     public float panValue = 0;
-
-    public float tiltUpValue = 0;
-    public float tiltDownValue = 0;
+    public float tiltValue = 0;
 
     public float boomValue = 0;
 
-    public enum CameraState  {Following, Zoom, Pan, TiltUp, TiltDown, Boom};
+    public enum CameraState  {Following, Zoom, Pan, Tilt, Boom};
     public CameraState state;
 
     // Start is called before the first frame update
@@ -53,12 +51,8 @@ public class CameraController : MonoBehaviour
                 Pan();
                 break;
 
-            case CameraState.TiltUp:
-                TiltUp();
-                break;
-
-            case CameraState.TiltDown:
-                TiltDown();
+            case CameraState.Tilt:
+                Tilt();
                 break;
 
             case CameraState.Boom:
@@ -75,52 +69,17 @@ public class CameraController : MonoBehaviour
     // zoomValue가 1 이상이면 줌인, 1 이하이면 줌아웃
     void Zoom()
     {
-        cameraComponent.fieldOfView = Mathf.Lerp(cameraComponent.fieldOfView, zoomValue, speed * Time.deltaTime * 0.01f);
+        cameraComponent.fieldOfView = Mathf.Lerp(cameraComponent.fieldOfView, zoomValue, speed * Time.deltaTime);
     }
 
     void Pan()
     {
-        transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, panValue, speed * 0.01f * Time.deltaTime), 0); 
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, panValue, speed * Time.deltaTime), transform.eulerAngles.z); 
     }
 
-    void TiltUp()
+    void Tilt()
     {
-        float rotationX = Mathf.Round(transform.eulerAngles.x);
-        print(rotationX);
-
-        if (rotationX < tiltUpValue && rotationX >= 0)
-        {
-            transform.Rotate(Vector3.left * Time.deltaTime * speed);
-        }
-
-        if (rotationX > tiltUpValue)
-        {
-            transform.Rotate(Vector3.left * Time.deltaTime * speed);
-            if (rotationX <= tiltUpValue)
-            {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, tiltUpValue, transform.eulerAngles.z);
-            }
-        }
-    }
-
-    void TiltDown()
-    {
-        float rotationX = Mathf.Round(transform.eulerAngles.x);
-        print(rotationX);
-
-        if (rotationX > tiltDownValue && rotationX <= 360)
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * speed);
-        }
-
-        if (rotationX < tiltDownValue)
-        {
-            transform.Rotate(Vector3.right * Time.deltaTime * speed);
-            if (rotationX >= tiltDownValue)
-            {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, tiltDownValue, transform.eulerAngles.z);
-            }
-        }
+        transform.eulerAngles = new Vector3(Mathf.LerpAngle(transform.eulerAngles.x, tiltValue, speed * Time.deltaTime), transform.eulerAngles.y, transform.eulerAngles.z);
     }
 
     void Boom()
