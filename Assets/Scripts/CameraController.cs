@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Vector3 pos;
     public GameObject player;
-    public float speed = 5.0f;
+    public float speed;
     private Vector3 offset;
     private GameObject mainCamera;
     private Camera cameraComponent;
@@ -18,7 +17,7 @@ public class CameraController : MonoBehaviour
 
     public float boomValue = 0;
 
-    public enum CameraState  {Following, Zoom, Pan, Tilt, Boom};
+    public enum CameraState { Following, Zoom, Pan, Tilt, Boom };
     public CameraState state;
 
     // Start is called before the first frame update
@@ -27,17 +26,16 @@ public class CameraController : MonoBehaviour
         mainCamera = transform.GetChild(0).gameObject;
         cameraComponent = mainCamera.GetComponent<Camera>();
         zoomValue = mainCamera.GetComponent<Camera>().fieldOfView;
-        
+
         initialCameraPos = mainCamera.transform.localPosition;
 
-        pos = transform.position;
         offset = transform.position - player.transform.position;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        switch(state)
+        switch (state)
         {
             case CameraState.Following:
                 Following();
@@ -74,7 +72,7 @@ public class CameraController : MonoBehaviour
 
     void Pan()
     {
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, panValue, speed * Time.deltaTime), transform.eulerAngles.z); 
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, Mathf.LerpAngle(transform.eulerAngles.y, panValue, speed * Time.deltaTime), transform.eulerAngles.z);
     }
 
     void Tilt()
@@ -84,18 +82,12 @@ public class CameraController : MonoBehaviour
 
     void Boom()
     {
-        float positionY = Mathf.Round(transform.position.y);
-        if (positionY < boomValue)
-        {
-            offset = offset + (Vector3.up * speed * Time.deltaTime);
-            // mainCamera.transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
-
-        else if (positionY > boomValue)
-        {
-            offset = offset + (Vector3.down * speed * Time.deltaTime);
-            // mainCamera.transform.Translate(Vector3.down * speed * Time.deltaTime);
-        }
+        transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, boomValue, speed * Time.deltaTime), transform.position.z);
     }
-
+    
+    // IEnumerator BoomCoroutine()
+    // {
+    //     transform.position = new Vector3(transform.position.x, Mathf.Lerp(transform.position.y, boomValue, speed * Time.deltaTime), transform.position.z);
+    //     yield return new WaitUntil(() => Mathf.Round(transform.position.y) == boomValue);
+    // }
 }
