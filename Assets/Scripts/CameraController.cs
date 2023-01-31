@@ -13,15 +13,14 @@ public class CameraController : MonoBehaviour
     private Vector3 initialCameraPos;
 
     public float zoomValue;
-    public float panRightValue = 0;
-    public float panLeftValue = 0;
+    public float panValue = 0;
 
     public float tiltUpValue = 0;
     public float tiltDownValue = 0;
 
     public float boomValue = 0;
 
-    public enum CameraState  {Following, Zoom, PanRight, PanLeft, TiltUp, TiltDown, Boom};
+    public enum CameraState  {Following, Zoom, Pan, TiltUp, TiltDown, Boom};
     public CameraState state;
 
     // Start is called before the first frame update
@@ -50,12 +49,8 @@ public class CameraController : MonoBehaviour
                 Zoom();
                 break;
 
-            case CameraState.PanRight:
-                PanRight();
-                break;
-
-            case CameraState.PanLeft:
-                PanLeft();
+            case CameraState.Pan:
+                Pan();
                 break;
 
             case CameraState.TiltUp:
@@ -83,42 +78,9 @@ public class CameraController : MonoBehaviour
         cameraComponent.fieldOfView = Mathf.Lerp(cameraComponent.fieldOfView, zoomValue, speed * Time.deltaTime * 0.01f);
     }
 
-    void PanRight()
+    void Pan()
     {
-        float rotationY = Mathf.Round(transform.eulerAngles.y);
-        // 현재 각도가 원하는 각도보다 큰 경우 360도까지 회전
-        if (rotationY > panRightValue && rotationY <= 360)
-        {
-            transform.Rotate(Vector3.up * Time.deltaTime * speed);
-        }
-
-        if (rotationY < panRightValue)
-        {
-            transform.Rotate(Vector3.up * Time.deltaTime * speed);
-            if (rotationY >= panRightValue)
-            {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, panRightValue, transform.eulerAngles.z);
-            }
-        }
-    }
-
-    void PanLeft()
-    {
-        float rotationY = Mathf.Round(transform.eulerAngles.y);
-        // 현재 각도가 원하는 각도보다 작은 경우 0도까지 회전
-        if (rotationY < panLeftValue && rotationY >= 0)
-        {
-            transform.Rotate(Vector3.down * Time.deltaTime * speed);
-        }
-
-        if (rotationY > panLeftValue)
-        {
-            transform.Rotate(Vector3.down * Time.deltaTime * speed);
-            if (rotationY <= panLeftValue)
-            {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, panLeftValue, transform.eulerAngles.z);
-            }
-        }
+        transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, panValue, speed * 0.01f * Time.deltaTime), 0); 
     }
 
     void TiltUp()
