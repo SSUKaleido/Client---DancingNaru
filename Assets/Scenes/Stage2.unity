@@ -394,7 +394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6817665899072575701, guid: c4638621fd918024e8c8e87cdcc7132a, type: 3}
       propertyPath: speed
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6817665899072575704, guid: c4638621fd918024e8c8e87cdcc7132a, type: 3}
       propertyPath: m_Name
@@ -807,7 +807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.519997
+      value: 28.53682
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -815,7 +815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.72
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -866,6 +866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   targetPos: {x: 118.53682, y: -1.5, z: 2.5}
+  randomPos: {x: 0, y: 0, z: 0}
 --- !u!1 &872795189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.669998
+      value: 28.536821
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1172,7 +1173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.61
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   targetPos: {x: 118.53682, y: -1.5, z: -2.5}
+  randomPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1168643909 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5550458351752426525, guid: b58a7c2fc4e9034478b20f1f66b14119, type: 3}
@@ -1549,7 +1551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.89
+      value: 23.536821
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1557,7 +1559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.54
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1608,6 +1610,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   targetPos: {x: 113.53682, y: -1.5, z: 2.5}
+  randomPos: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548236592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1946,7 +1949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.86
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5075584325065768647, guid: 6bdf3b5e108f536448ea8c9784571b33, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1997,6 +2000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   targetPos: {x: 113.53682, y: -1.5, z: -2.5}
+  randomPos: {x: 0, y: 0, z: 0}
 --- !u!4 &1947030873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9091305357348686173, guid: bd71b4cc12944a846909580cf9448291, type: 3}
