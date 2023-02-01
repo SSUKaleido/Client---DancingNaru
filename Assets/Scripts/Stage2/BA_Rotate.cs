@@ -5,7 +5,7 @@ using UnityEngine;
 public class BA_Rotate : BackgroundAnimation
 {
     public float speed = 30.0f; //speed 값이 양수이면 오른쪽으로, 음수이면 왼쪽으로 이동
-    public bool animationOn = false;
+    private bool animationOn = false;
 
     // Start is called before the first frame update
     void Start()

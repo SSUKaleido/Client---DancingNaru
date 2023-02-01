@@ -5,10 +5,10 @@ using UnityEngine;
 public class BA_SetPosition : BackgroundAnimation
 {
     public float speed = 10;
-    public Vector3 targetPos;   // 원위치
-    public Vector3 randomPos;   // 랜덤위치
-    private float distance = 10.0f;
-
+    public float distance = 10.0f;
+    private Vector3 targetPos;   // 원위치
+    private Vector3 randomPos;   // 랜덤위치
+    
     private bool animationOn = false;
 
     // Start is called before the first frame update

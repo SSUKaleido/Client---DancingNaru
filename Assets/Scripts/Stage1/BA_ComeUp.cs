@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_CompUp : BackgroundAnimation
+public class BA_ComeUp : BackgroundAnimation
 {
 
     public float speed = 7.5f;  //오브젝트 올라오는 속도

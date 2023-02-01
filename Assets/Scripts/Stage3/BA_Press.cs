@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BA_DownUp : BackgroundAnimation
+public class BA_Press : BackgroundAnimation
 {
     public float speed = 5.0f;
     public float upYPos = 0.5f; // 다시 위로 올라갔을 때 Y 위치   
