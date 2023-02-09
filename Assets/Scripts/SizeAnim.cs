@@ -10,12 +10,13 @@ using Vector3 = UnityEngine.Vector3;
 
 public class SizeAnim : MonoBehaviour
 {
-    private float[] pos = new float[5];
+    private const int SIZE = 3;
+    private float[] pos = new float[SIZE];
     public Scrollbar scrollbar;
 
     private Vector3 originScale;
     private Vector3 firstScale;
-    private Vector3 localScale = new Vector3(780f, 100f, 600f);
+    private Vector3 localScale = new Vector3(400f, 400f, 400f);
     
     void Start()
     {
@@ -26,10 +27,8 @@ public class SizeAnim : MonoBehaviour
             transform.localScale = firstScale;
         
         pos[0] = 0f;
-        pos[1] = 0.25f;
-        pos[2] = 0.5f;
-        pos[3] = 0.75f;
-        pos[4] = 1f;
+        pos[1] = 0.5f;
+        pos[2] = 1f;
     }
 
     private void Update()
@@ -40,83 +39,41 @@ public class SizeAnim : MonoBehaviour
 
     IEnumerator Bigger()
     {
-        if (this.GameObject() == GameObject.Find("Map2"))
+        if (this.GameObject() == GameObject.Find("Map2")) //기준
         {
-            while (scrollbar.value < pos[4] && scrollbar.value >= pos[3])
+            while (scrollbar.value < pos[2] && scrollbar.value >= pos[1]) // 1~0.5
             {
-                transform.localScale = firstScale * (pos[3] / (scrollbar.value - pos[1]));
+                transform.localScale = firstScale * (1f / scrollbar.value);
                 yield return null;
             }
         }
 
-        if (this.GameObject() == GameObject.Find("Map3")) //기준
+        if (this.GameObject() == GameObject.Find("Map3"))
         {
-            while (scrollbar.value < pos[3] && scrollbar.value >= pos[2])
+            while (scrollbar.value < pos[1] && scrollbar.value >= pos[0]) // 0.5~0
             {
-                transform.localScale = firstScale * (pos[3] / scrollbar.value);
-                yield return null;
-            }
-        }
-
-        if (this.GameObject() == GameObject.Find("Map4"))
-        {
-            while (scrollbar.value < pos[2] && scrollbar.value >= pos[1])
-            {
-                transform.localScale = firstScale * (pos[3] / (scrollbar.value + pos[1]));
-                yield return null;
-            }
-        }
-
-        if (this.GameObject() == GameObject.Find("Map5"))
-        {
-            while (scrollbar.value < pos[1] && scrollbar.value >= pos[0])
-            {
-                transform.localScale = firstScale * (pos[3] / (scrollbar.value + pos[2]));
+                transform.localScale = firstScale * (1f / (scrollbar.value + 0.5f));
                 yield return null;
             }
         }
     }
-
-
-
+    
     IEnumerator Smaller()
     {
-        if (this.GameObject() == GameObject.Find("Map1"))
+        if (this.GameObject() == GameObject.Find("Map1")) //기준
         {
-            while (scrollbar.value < pos[4] && scrollbar.value >= pos[3])
+            while (scrollbar.value < pos[2] && scrollbar.value >= pos[1]) // 1~0.5
             {
-                transform.localScale = originScale * ((scrollbar.value-pos[1])/pos[3]);
-                
+                transform.localScale = originScale * (scrollbar.value / 1f);
                 yield return null;
             }
         }
         
-        if (this.GameObject() == GameObject.Find("Map2")) // 기준
+        if (this.GameObject() == GameObject.Find("Map2")) 
         {
-            while (scrollbar.value < pos[3] && scrollbar.value >= pos[2])
+            while (scrollbar.value < pos[1] && scrollbar.value >= pos[0]) // 0.5~0
             {
-                transform.localScale = originScale * (scrollbar.value/pos[3]);
-                
-                yield return null;
-            }
-        }
-        
-        if (this.GameObject() == GameObject.Find("Map3"))
-        {
-            while (scrollbar.value < pos[2] && scrollbar.value >= pos[1])
-            {
-                transform.localScale = originScale * ((scrollbar.value+pos[1])/pos[3]);
-                
-                yield return null;
-            }
-        }
-        
-        if (this.GameObject() == GameObject.Find("Map4"))
-        {
-            while (scrollbar.value < pos[1] && scrollbar.value >= pos[0])
-            {
-                transform.localScale = originScale * ((scrollbar.value+pos[2])/pos[3]);
-                
+                transform.localScale = originScale * ((scrollbar.value+0.5f) / 1f);
                 yield return null;
             }
         }

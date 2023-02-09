@@ -9,7 +9,7 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
 {
     public Scrollbar scrollbar;
 
-    private const int SIZE = 5;
+    private const int SIZE = 3;
     private float[] pos = new float[SIZE];
     private float distance;
 
@@ -20,14 +20,12 @@ public class NestedScrollManager : MonoBehaviour, IEndDragHandler
 
     void Start()
     {
-        distance = 0.25f; // 맵 중앙 피봇 사이 거리
+        distance = 0.5f; // 맵 중앙 피봇 사이 거리
         
         // 각 맵이 중앙으로 포커싱 될때 scrollbar value 값
         pos[0] = 0f;
-        pos[1] = 0.25f;
-        pos[2] = 0.5f;
-        pos[3] = 0.75f;
-        pos[4] = 1f;
+        pos[1] = 0.5f;
+        pos[2] = 1f;
     }
     
     public void OnEndDrag(PointerEventData eventData)

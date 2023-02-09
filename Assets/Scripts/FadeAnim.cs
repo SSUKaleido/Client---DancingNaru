@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class FadeAnim : MonoBehaviour
 {
     private MeshRenderer _meshRenderer;
-    private float[] pos = new float[5];
+    private const int SIZE = 3;
+    private float[] pos = new float[SIZE];
     public Scrollbar scrollbar;
     private Color currentColor;
     private float fadeInValue = 0.6f;
@@ -24,10 +25,8 @@ public class FadeAnim : MonoBehaviour
         }
 
         pos[0] = 0f;
-        pos[1] = 0.25f;
-        pos[2] = 0.5f;
-        pos[3] = 0.75f;
-        pos[4] = 1f;
+        pos[1] = 0.5f;
+        pos[2] = 1f;
     }
     
     void Update()
