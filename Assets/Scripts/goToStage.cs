@@ -9,7 +9,7 @@ public class goToStage : MonoBehaviour
     
     public void OnClickButton()
     {
-        
+        Debug.Log("스테이지 이동");
     }
     
     void Start()
