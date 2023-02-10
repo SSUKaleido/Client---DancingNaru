@@ -8,16 +8,16 @@ public class LineController : MonoBehaviour
 
     public float speed;
     public GameObject cubeObj;
-    
+
     private GameObject curObj;
     private bool _isGameOver = false;
 
-    void Awake()
+    private void Awake()
     {
-        StartLineProgress();
+        InstantiateCube();
     }
 
-    void StartLineProgress()
+    public void StartLineProgress()
     {
         InstantiateCube();
         StartCoroutine(CoControl());
@@ -25,12 +25,17 @@ public class LineController : MonoBehaviour
 
     IEnumerator CoControl()
     {
-        while (!_isGameOver)
+        while (true)
         {
             if (Input.touchCount == 0) _isTouching = false;
 
             GetTouch();
             MoveLine();
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                StopPlayer();
+            }
 
             yield return null;
         }
@@ -46,7 +51,7 @@ public class LineController : MonoBehaviour
         {
             transform.Rotate(Vector3.up * 90f);
         }
-        
+
         InstantiateCube();
     }
 
@@ -72,8 +77,12 @@ public class LineController : MonoBehaviour
     void MoveLine()
     {
         transform.position += transform.forward * (speed * Time.deltaTime);
-        curObj.transform.position += transform.forward * (speed * Time.deltaTime / 2);
-        curObj.transform.localScale += transform.forward * (speed * Time.deltaTime);
+
+        if (!_isGameOver)
+        {
+            curObj.transform.position += transform.forward * (speed * Time.deltaTime / 2);
+            curObj.transform.localScale += transform.forward * (speed * Time.deltaTime);
+        }
     }
 
     void InstantiateCube()
@@ -83,6 +92,6 @@ public class LineController : MonoBehaviour
 
     void StopPlayer()
     {
-        
+        _isGameOver = true;
     }
 }
