@@ -87,10 +87,11 @@ public class LineController : MonoBehaviour
 
     void InstantiateCube()
     {
+        if(_isGameOver) return;
         curObj = Instantiate(cubeObj, transform.position, Quaternion.identity);
     }
 
-    void StopPlayer()
+    public void StopPlayer()
     {
         _isGameOver = true;
     }

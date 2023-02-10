@@ -38,4 +38,9 @@ public class StageManager : MonoBehaviour
 
         }
     }
+
+    public void GameOver()
+    {
+controller.StopPlayer();
+    }
 }

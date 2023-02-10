@@ -4,33 +4,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public bool playerMove = true;
-
     // 게임오버 판정
-    public bool isGameOver;
+    private bool isGameOver;
+    public bool IsGameOver{
+        get { return isGameOver;}
+        set { isGameOver = value;
+        if(isGameOver)
+        {
+            StageManager.instance.GameOver();
+        }}
+    }
+
+    private GameObject CameraPoint;
+
+    // private CameraController CameraControllerScript;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        Physics.gravity = new Vector3(0, -0.5f, 0);
+        CameraPoint = GameObject.Find("CameraPoint");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //플레이어 움직임
-        Move();
-        if (Input.GetKey(KeyCode.Space))
-        {
-            transform.position = new Vector3(0, 1, 0);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
-
-        IsGameOver();
+        GameOver();
         if (isGameOver == true)
         {
             print("Game Over");
+            CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop;
         }
     }
 
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
         {
-            isGameOver = true;
+            IsGameOver = true;
         }
     }
 
@@ -49,46 +52,11 @@ public class PlayerController : MonoBehaviour
         return Physics.Raycast(transform.position, -Vector3.up);
     }
 
-    public void IsGameOver()
+    public void GameOver()
     {
         if (IsGrounded() == false)
         {
-            isGameOver = true;
+            IsGameOver = true;
         }
     }
-
-
-    
-
-    //플레이어 움직임
-    private void Move()
-    {
-        if (playerMove == true && Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(Vector3.forward * Time.deltaTime * speed);
-        }
-        if (playerMove == true && Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * speed);
-        }
-        if (playerMove == true && Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(Vector3.right * Time.deltaTime * speed);
-        }
-        if (playerMove == true && Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(Vector3.left * Time.deltaTime * speed);
-        }
-    }
-
-    // private IEnumerator falling()
-    // {
-    //     while (transform.position.y > -3)
-    //     {
-    //         transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    //         playerMove = false;
-    //         yield return null;
-    //     }
-    //     playerMove = true;
-    // }
 }

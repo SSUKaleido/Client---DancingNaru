@@ -14,10 +14,9 @@ public class CameraController : MonoBehaviour
     public float zoomValue;
     public float panValue = 0;
     public float tiltValue = 0;
-
     public float boomValue = 0;
 
-    public enum CameraState { Following, Zoom, Pan, Tilt, Boom };
+    public enum CameraState { Following, Zoom, Pan, Tilt, Boom, Stop };
     public CameraState state;
 
     // Start is called before the first frame update
@@ -56,7 +55,16 @@ public class CameraController : MonoBehaviour
             case CameraState.Boom:
                 Boom();
                 break;
+            
+            case CameraState.Stop:
+                Stop();
+                break;
         }
+    }
+
+    void Stop()
+    {
+        transform.position = transform.position;
     }
 
     void Following()
