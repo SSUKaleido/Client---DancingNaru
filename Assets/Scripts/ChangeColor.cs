@@ -28,7 +28,7 @@ public class ChangeColor : MonoBehaviour
     
     public float duration = 0.3f;
     public float smoothness = 0.0095f; 
-    private void FixedUpdate()
+    private void Update()
     {
         if (scrollbar.value < pos[2] + distance * 0.5f && scrollbar.value > pos[2] - distance * 0.5f) 
         {

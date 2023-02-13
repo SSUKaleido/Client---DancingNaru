@@ -9,9 +9,7 @@ public class goToStage : MonoBehaviour
 {
     private Button button;
     public Scrollbar scrollbar;
-    private const int SIZE = 3;
-    private float[] pos = new float[SIZE];
-    private float distance;
+    private float[] pos = new float[3];
 
     public void OnClickButton()
     {
@@ -39,8 +37,7 @@ public class goToStage : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClickButton);
         button.interactable = false;
-
-        distance = 0.5f;
+        
         pos[0] = 0f;
         pos[1] = 0.5f;
         pos[2] = 1f;
@@ -48,32 +45,33 @@ public class goToStage : MonoBehaviour
 
     void Update()
     {
-        if (button.interactable)
-            button.interactable = false;
-
+        StartCoroutine(ButtonOn());
     }
 
     IEnumerator ButtonOn()
     {
-        while (scrollbar.value < 1.1f && scrollbar.value > 0.9f)
-        {
-            button.interactable = true;
-            yield return null;
-        }
+        if (button.interactable)
+            button.interactable = false;
+        
+        if (gameObject.transform.parent.name == "Map1")
+            while (scrollbar.value < 1.1f && scrollbar.value > 0.9f) 
+            {
+                button.interactable = true;
+                yield return null;
+            }
 
+        if (gameObject.transform.parent.name == "Map2")
+            while (scrollbar.value < 0.6f && scrollbar.value > 0.4f)
+            {
+                button.interactable = true;
+                yield return null;
+            }
 
-        while (scrollbar.value < 0.6f && scrollbar.value > 0.4f)
-        {
-            button.interactable = true;
-            yield return null;
-        }
-
-
-        while (scrollbar.value < 0.1f && scrollbar.value > -0.1f)
-        {
-            button.interactable = true;
-            yield return null;
-        }
+        if (gameObject.transform.parent.name == "Map3")
+            while (scrollbar.value < 0.1f && scrollbar.value > -0.1f)
+            { 
+                button.interactable = true;
+                yield return null;
+            }
     }
-
 }
