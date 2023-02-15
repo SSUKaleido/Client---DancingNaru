@@ -15,9 +15,9 @@ public class PlayerController : MonoBehaviour
         }}
     }
 
-    public GameObject canvas;
-
+    public GameObject canvas;   //게임 오버 시 UI 출현
     private GameObject CameraPoint;
+    private LineController LineControllerScript;    //LineController 스크립트
 
     // private CameraController CameraControllerScript;
     
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         CameraPoint = GameObject.Find("CameraPoint");
+        LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             print("Game Over");
             CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop;
-            StartCoroutine(delay());
+            StartCoroutine(ActiveGameUI());
         }
     }
 
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == 3)
         {
             IsGameOver = true;
+            Destroy(LineControllerScript);  //LineController 스크립트 작동 불가
         }
     }
 
@@ -63,7 +65,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator delay()
+    // GameOverUI 
+    IEnumerator ActiveGameUI()
     {
         yield return new WaitForSeconds(1.5f);
         canvas.SetActive(true);
