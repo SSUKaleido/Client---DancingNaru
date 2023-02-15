@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class GameOverUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject CameraPoint;
+    public GameObject canvas;   //게임 오버 시 UI 출현
+    public void ActiveGameOverUI()
     {
-        
+        CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop;
+        StartCoroutine(delay());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator delay()
     {
-        
+        yield return new WaitForSeconds(1.5f);
+        canvas.SetActive(true);
     }
 }
