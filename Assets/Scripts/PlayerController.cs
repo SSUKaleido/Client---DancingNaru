@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
         }}
     }
 
+    public GameObject canvas;
+
     private GameObject CameraPoint;
 
     // private CameraController CameraControllerScript;
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
         {
             print("Game Over");
             CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop;
+            StartCoroutine(delay());
         }
     }
 
@@ -58,5 +61,11 @@ public class PlayerController : MonoBehaviour
         {
             IsGameOver = true;
         }
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        canvas.SetActive(true);
     }
 }
