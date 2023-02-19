@@ -9,7 +9,7 @@ public class Text : MonoBehaviour
     private Scrollbar scrollbar;
     private const int SIZE = 3;
     private float[] pos = new float[SIZE];
-    private float distance = 0.5f;
+    //private float distance = 0.5f;
 
     void Start()
     {

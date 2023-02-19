@@ -7,30 +7,38 @@ using UnityEngine.UI;
 
 public class FadeAnim : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
+    private MeshRenderer[] _meshRenderer;
     private const int SIZE = 3;
     private float[] pos = new float[SIZE];
     public Scrollbar scrollbar;
-    private Color currentColor;
+    private Color[] currentColor;
     public float firstValue = 0.5f;
-    
-    
+
+
     void Start()
     {
-        _meshRenderer = transform.GetComponent<MeshRenderer>();
-        currentColor = _meshRenderer.material.color;
-        
-        if (gameObject.transform.parent.parent.name != "stage1")
+
+        _meshRenderer = transform.GetComponentsInChildren<MeshRenderer>();
+
+        for (int i = 0; i < _meshRenderer.Length; i++)
         {
-            currentColor.a = firstValue; 
-            _meshRenderer.material.color = currentColor;
+            currentColor[i] = _meshRenderer[i].material.color;
         }
-        
+
+
+
+        for (int i = 0; i < _meshRenderer.Length; i++)
+            if (gameObject.transform.parent.name != "stage1")
+            {
+                currentColor[i].a = firstValue;
+                _meshRenderer[i].material.color = currentColor[i];
+            }
+
         pos[0] = 0f;
         pos[1] = 0.5f;
         pos[2] = 1f;
     }
-    
+
     void Update()
     {
         StartCoroutine(FadeUp());
@@ -40,60 +48,63 @@ public class FadeAnim : MonoBehaviour
 
     IEnumerator FadeUp()
     {
-        Color curColor = _meshRenderer.material.color;
-        
-        if(gameObject.transform.parent.parent.name == "stage2" || gameObject.transform.parent.parent.parent.name == "stage2")
-            while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
-            {
-                curColor.a = firstValue + ((1/scrollbar.value)-1f); //0-1
-                if (curColor.a >= 1f)
-                    curColor.a = 1f;
-                
-                _meshRenderer.material.color = curColor;
+        for (int i = 0; i < _meshRenderer.Length; i++)
+            if (gameObject.transform.parent.name == "stage2" || gameObject.transform.parent.parent.name == "stage2")
+                while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
+                {
+                    currentColor[i].a = firstValue + ((1 / scrollbar.value) - 1f); //0-1
+                    if (currentColor[i].a >= 1f)
+                        currentColor[i].a = 1f;
 
-                yield return null;
-            }
-        
-        if(gameObject.transform.parent.parent.name == "stage3" || gameObject.transform.parent.parent.parent.name == "stage3")
-            while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
-            {
-                curColor.a = firstValue + ((1/(scrollbar.value+0.5f))-1f); 
-                if (curColor.a >= 1f)
-                    curColor.a = 1f;
-                
-                _meshRenderer.material.color = curColor;
+                    _meshRenderer[i].material.color = currentColor[i];
 
-                yield return null;
+                    yield return null;
+                }
+
+        for (int i = 0; i < _meshRenderer.Length; i++)
+            if (gameObject.transform.parent.name == "stage3" || gameObject.transform.parent.parent.name == "stage3")
+            {
+                while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
+                {
+                    currentColor[i].a = firstValue + ((1 / (scrollbar.value + 0.5f)) - 1f);
+                    if (currentColor[i].a >= 1f)
+                        currentColor[i].a = 1f;
+
+                    _meshRenderer[i].material.color = currentColor[i];
+
+                    yield return null;
+                }
             }
     }
 
     IEnumerator FadeDown()
     {
-        Color curColor = _meshRenderer.material.color;
+        for (int i = 0; i < _meshRenderer.Length; i++)
+            if (gameObject.transform.parent.name == "stage1" || gameObject.transform.parent.parent.name == "stage1")
+                while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
+                {
+                    currentColor[i].a = 1f - ((1 / scrollbar.value) - 1f); //0-1
+                    if (currentColor[i].a <= 0.6f)
+                        currentColor[i].a = 0.6f;
 
-        if(gameObject.transform.parent.parent.name == "stage1" || gameObject.transform.parent.parent.parent.name == "stage1")
-            while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
-            {
-                curColor.a = 1f - ((1/scrollbar.value)-1f);   //0-1
-                if (curColor.a <= 0.6f)
-                    curColor.a = 0.6f;
-                
-                _meshRenderer.material.color = curColor;
+                    _meshRenderer[i].material.color = currentColor[i];
 
-                yield return null;
-            }
-            
-        
-        if(gameObject.transform.parent.parent.name == "stage2" || gameObject.transform.parent.parent.parent.name == "stage2")
-            while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
-            {
-                curColor.a = 1f - ((1/(scrollbar.value+0.5f))-1f); //0.5-0
-                if (curColor.a <= 0.6f)
-                    curColor.a = 0.6f;
-                
-                _meshRenderer.material.color = curColor;
+                    yield return null;
+                }
 
-                yield return null;
-            }
+        for (int i = 0; i < _meshRenderer.Length; i++)
+            if (gameObject.transform.parent.name == "stage2" || gameObject.transform.parent.parent.name == "stage2")
+                while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
+                {
+                    currentColor[i].a = 1f - ((1 / (scrollbar.value + 0.5f)) - 1f); //0.5-0
+                    if (currentColor[i].a <= 0.6f)
+                        currentColor[i].a = 0.6f;
+
+                    _meshRenderer[i].material.color = currentColor[i];
+
+                    yield return null;
+                }
     }
 }
+
+
