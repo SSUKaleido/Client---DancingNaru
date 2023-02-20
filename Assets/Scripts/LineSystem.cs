@@ -21,16 +21,16 @@ public class LineSystem : MonoBehaviour
     public float allowedTouchTime;
 
     /*[Tooltip("")]
-    public GameObject RoadPrefap;*/ // ÃßÈÄ¿¡ ¹æ½ÄÀ» Á¤ÇØ¼­ °³¹ß ¿¹Á¤
+    public GameObject RoadPrefap;*/ // ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
     [Tooltip("Enter the desired timing seconds and double-click the scene in Assets/Scenes to create a TurningPoint as a sub-object.")]
     public List<float> timeLine = new List<float>();
 
-    //º¯È¯Á¡ ¸®½ºÆ®
+    //ï¿½ï¿½È¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     [HideInInspector]
     public List<Vector3> TurningPoint = new List<Vector3>();
 
-    //±æ ¸®½ºÆ®
+    //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
     [HideInInspector]
     public List<GameObject> RoadObj = new List<GameObject>();
 
@@ -42,7 +42,7 @@ public class LineSystem : MonoBehaviour
     // Update is called once per frame
     void Awake()
     {
-        beforePos = Vector3.zero;
+        beforePos = new Vector3(transform.position.x, transform.position.y, transform.position.z); //Vector3.zero;
         beforeTime = 0;
 
         if (CheckPointDataIsntNull()) // Check if there is no null value at the turning point
