@@ -5,6 +5,8 @@ using UnityEngine;
 public class cube_move : MonoBehaviour
 {
     public float speed = 5.0f;
+    public ParticleSystem particleObject;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,10 +14,13 @@ public class cube_move : MonoBehaviour
         {
             Debug.Log("충돌");
             Destroy(other.gameObject); //충돌시 crown이 사라짐
+
+            particleObject.Play(); //파티클 시스템 실행
         }
     }
 
     // Update is called once per frame
+    //큐브이동
     void Update()
     {
         float h = Input.GetAxis("Horizontal");
