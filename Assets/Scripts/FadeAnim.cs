@@ -57,7 +57,7 @@ public class FadeAnim : MonoBehaviour
                     {
                         Color c = currentColor[i];
                         c.a = firstValue + ((1 / scrollbar.value) - 1f); //0-1
-                        if (currentColor[i].a >= 1f)
+                        if (c.a >= 1f)
                             c.a = 1f;
 
                         currentColor[i] = c;
@@ -75,7 +75,7 @@ public class FadeAnim : MonoBehaviour
                 {
                     Color c = currentColor[i];
                     c.a = firstValue + ((1 / (scrollbar.value + 0.5f)) - 1f);
-                    if (currentColor[i].a >= 1f)
+                    if (c.a >= 1f)
                         c.a = 1f;
 
                     currentColor[i] = c;
@@ -103,8 +103,6 @@ public class FadeAnim : MonoBehaviour
                     if (c.a <= 0.6f)
                         c.a = 0.6f;
 
-                    Debug.Log(c.a);
-                    
                     currentColor[i] = c;
                     _meshRenderer[i].material.color = currentColor[i];
 
@@ -118,7 +116,7 @@ public class FadeAnim : MonoBehaviour
                 {
                     Color c = currentColor[i];
                     c.a = 1f - ((1 / (scrollbar.value + 0.5f)) - 1f); //0.5-0
-                    if (currentColor[i].a <= 0.6f)
+                    if (c.a <= 0.6f)
                         c.a = 0.6f;
 
                     currentColor[i] = c;

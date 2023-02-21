@@ -26,34 +26,35 @@ public class ChangeColor : MonoBehaviour
         _camera.GetComponent<Camera>();
     }
     
-    public float duration = 0.3f;
-    public float smoothness = 0.0095f; 
+   
+    public float duration = 0.2f; // duration in seconds
+    public float t = 0; // lerp control variable
     private void FixedUpdate()
     {
         if (scrollbar.value < pos[2] + distance * 0.5f && scrollbar.value > pos[2] - distance * 0.5f) 
         {
-            StartCoroutine(LerpColor(map[2]));
+            Color Map1Color = _camera.backgroundColor;
+            
+            _camera.backgroundColor = Color.Lerp(Map1Color, map[2], t);
+            
+            if (t < 1f)
+                t += Time.deltaTime/duration;
         }
+        
         if (scrollbar.value < pos[1] + distance * 0.5f && scrollbar.value > pos[1] - distance * 0.5f) 
         {
-            StartCoroutine(LerpColor(map[1]));
-            
+            Color Map2Color = _camera.backgroundColor;
+            if (t < 1f)
+                t += Time.deltaTime/duration;
+            _camera.backgroundColor = Color.Lerp(Map2Color, map[1], t);
         }
-        if (scrollbar.value < pos[0] + distance * 0.5f && scrollbar.value > pos[0] - distance * 0.5f) 
+
+        if (scrollbar.value < pos[0] + distance * 0.5f && scrollbar.value > pos[0] - distance * 0.5f)
         {
-            StartCoroutine(LerpColor(map[0]));
-        }
-    }
-    IEnumerator LerpColor(Color to)
-    {
-        Color currentColor = _camera.backgroundColor;
-        float progress = 0; 
-        float increment = smoothness/duration; 
-        while(progress < 1)
-        {
-            _camera.backgroundColor = Color.Lerp(currentColor, to, progress);
-            progress += increment;
-            yield return new WaitForSeconds(smoothness);
+            Color Map3Color = _camera.backgroundColor;
+            if (t < 1f)
+                t += Time.deltaTime/duration;
+            _camera.backgroundColor = Color.Lerp(Map3Color, map[0], t);
         }
     }
 }
