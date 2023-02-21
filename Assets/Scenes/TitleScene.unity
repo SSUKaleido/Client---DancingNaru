@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1461,11 +1461,23 @@ MonoBehaviour:
   m_HandleRect: {fileID: 860214637}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.558952
+  m_Size: 0.556948
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1903522757}
+        m_TargetAssemblyTypeName: FadeAnim, Assembly-CSharp
+        m_MethodName: CallFadeDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &826825947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3165,6 +3177,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f19be5676c2fb5478bb081a62174f4a, type: 3}
+--- !u!1 &1903522755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3400350414840467996, guid: 8f19be5676c2fb5478bb081a62174f4a, type: 3}
+  m_PrefabInstance: {fileID: 1903522754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1903522756 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3400350414702904389, guid: 8f19be5676c2fb5478bb081a62174f4a, type: 3}
+  m_PrefabInstance: {fileID: 1903522754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903522757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903522755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66a5437d89ba3b4b9767701be56a4fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _meshRenderer: []
+  scrollbar: {fileID: 826825946}
+  firstValue: 0.5
+  parentTransfrom: {fileID: 1903522756}
 --- !u!1 &1919781144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,15 +3376,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2600466688198835660, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2600466688198835660, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2600466688198835660, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2600466688198835660, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3399,6 +3437,22 @@ PrefabInstance:
     - target: {fileID: 2600466688198835662, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
       propertyPath: scalingMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600466688198835662, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600466688198835662, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600466688198835662, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2600466688198835662, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
+      propertyPath: InitialModule.gravityModifier.minScalar
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d7e9d8e2bbcf2644b6baab1c379eb6e, type: 3}
