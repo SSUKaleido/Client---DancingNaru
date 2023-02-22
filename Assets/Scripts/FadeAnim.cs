@@ -31,7 +31,7 @@ public class FadeAnim : MonoBehaviour
 
 
         for (int i = 0; i < _meshRenderer.Length; i++)
-            if (parentTransfrom.name != "stage1")
+            if (parentTransfrom.name != "Map1")
             {
                 Color c = currentColor[i];
                 c.a = firstValue;
@@ -50,7 +50,7 @@ public class FadeAnim : MonoBehaviour
     IEnumerator FadeUp()
     {
         {
-            if (parentTransfrom.name == "stage2")
+            if (parentTransfrom.name == "Map2")
             {
                 while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
                     for (int i = 0; i < _meshRenderer.Length; i++)
@@ -68,7 +68,7 @@ public class FadeAnim : MonoBehaviour
             }
         }
 
-        if (parentTransfrom.name == "stage3")
+        if (parentTransfrom.name == "Map3")
         {
             while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
                 for (int i = 0; i < _meshRenderer.Length; i++)
@@ -93,13 +93,13 @@ public class FadeAnim : MonoBehaviour
 
     IEnumerator FadeDown()
     {
-        if (parentTransfrom.name == "stage1")
+        if (parentTransfrom.name == "Map1")
             while (scrollbar.value < 1f && scrollbar.value >= 0.5f)
             {
                 for (int i = 0; i < _meshRenderer.Length; i++)
                 {
                     Color c = currentColor[i];
-                    c.a = 2f - (1 / scrollbar.value); //0-1
+                    c.a = 1f - ((1 / scrollbar.value)-1f); //0-1
                     if (c.a <= 0.6f)
                         c.a = 0.6f;
 
@@ -110,7 +110,7 @@ public class FadeAnim : MonoBehaviour
                 }
             }
 
-        if (parentTransfrom.name == "stage2")
+        if (parentTransfrom.name == "Map2")
             while (scrollbar.value < 0.5f && scrollbar.value >= 0f)
                 for (int i = 0; i < _meshRenderer.Length; i++)
                 {
