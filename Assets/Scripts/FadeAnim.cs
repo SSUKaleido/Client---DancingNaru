@@ -12,7 +12,7 @@ public class FadeAnim : MonoBehaviour
     private float[] pos = new float[SIZE];
     public Scrollbar scrollbar;
     private List<Color> currentColor = new List<Color>();
-    public float firstValue = 0.5f;
+    public float firstValue = 0.6f;
 
     public GameObject parentTransfrom;
 
