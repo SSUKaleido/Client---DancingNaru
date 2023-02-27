@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30db6cfc-1853-4288-b6ff-3591012845da" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/stage2/Stage2Road.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/stage2/Stage2Road.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +78,7 @@
       <workItem from="1676013979949" duration="322000" />
       <workItem from="1676442587371" duration="1108000" />
       <workItem from="1676915317885" duration="599000" />
+      <workItem from="1677410453640" duration="2000" />
     </task>
     <servers />
   </component>
