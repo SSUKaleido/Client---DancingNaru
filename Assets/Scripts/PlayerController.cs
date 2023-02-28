@@ -6,27 +6,34 @@ public class PlayerController : MonoBehaviour
 {
     // 게임오버 판정
     private bool isGameOver;
-    public bool IsGameOver{
-        get { return isGameOver;}
-        set { isGameOver = value;
-        if(isGameOver)
+    public bool IsGameOver
+    {
+        get { return isGameOver; }
+        set
         {
-            StageManager.instance.GameOver();
-        }}
+            isGameOver = value;
+            if (isGameOver)
+            {
+                StageManager.instance.GameOver();
+            }
+        }
     }
 
     public GameObject canvas;   //게임 오버 시 UI 출현
     private GameObject CameraPoint;
     private LineController LineControllerScript;    //LineController 스크립트
+    private Rigidbody playerRigidBody;  //Rigidbody 속성
+    public ParticleSystem deathEffect;  //충돌 시 파편 효과
+    private float force = 5;    // 플레이어 튕겨나가는 정도
 
-    // private CameraController CameraControllerScript;
-    
 
     // Start is called before the first frame update
     void Start()
     {
         CameraPoint = GameObject.Find("CameraPoint");
         LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
+        playerRigidBody = GetComponent<Rigidbody>();
+        canvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,9 +42,8 @@ public class PlayerController : MonoBehaviour
         GameOver();
         if (isGameOver == true)
         {
-            print("Game Over");
-            CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop;
-            StartCoroutine(ActiveGameUI());
+            CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop; //카메라 멈춤
+            StartCoroutine(ActiveGameUI()); // UI 화면 활성화
         }
     }
 
@@ -47,11 +53,17 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.layer == 3)
         {
             IsGameOver = true;
+
             Destroy(LineControllerScript);  //LineController 스크립트 작동 불가
+
+            // 충돌 시 애니메이션
+            playerRigidBody.AddForce(new Vector3(0,1,0) * force, ForceMode.Impulse);   // 뒤로 튕겨나가는 효과
+            playerRigidBody.AddTorque(new Vector3(0,1,0) * 100, ForceMode.Impulse); // 회전하는 효과
+            Instantiate(deathEffect, transform.position, Quaternion.identity);  //파티클 효과
         }
     }
 
-    //플레이어가 isGrounded인지 확인: 땅과 닿아있으면 true, 땅에서 떨어지면 false
+    //플레이어가 isGrounded인지 확인(땅과 닿아있으면 true, 땅에서 떨어지면 false)
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up);
