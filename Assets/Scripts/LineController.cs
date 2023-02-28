@@ -32,11 +32,6 @@ public class LineController : MonoBehaviour
             GetTouch();
             MoveLine();
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                StopPlayer();
-            }
-
             yield return null;
         }
     }
@@ -94,5 +89,14 @@ public class LineController : MonoBehaviour
     public void StopPlayer()
     {
         _isGameOver = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        string targetLayer = LayerMask.LayerToName(collision.gameObject.layer);
+        if (targetLayer.Contains("Clear"))
+        {
+            
+        }
     }
 }
