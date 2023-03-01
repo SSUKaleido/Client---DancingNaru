@@ -83,7 +83,7 @@ public class LineController : MonoBehaviour
     void InstantiateCube()
     {
         if(_isGameOver) return;
-        curObj = Instantiate(cubeObj, transform.position, Quaternion.identity);
+        curObj = Instantiate(cubeObj, transform.position, Quaternion.Euler(transform.forward));
     }
 
     public void StopPlayer()
@@ -96,7 +96,9 @@ public class LineController : MonoBehaviour
         string targetLayer = LayerMask.LayerToName(collision.gameObject.layer);
         if (targetLayer.Contains("Clear"))
         {
-            
+            Debug.Log("Clear Zone");
+
+            transform.forward = collision.gameObject.transform.forward;
         }
     }
 }
