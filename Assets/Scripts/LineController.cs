@@ -96,9 +96,9 @@ public class LineController : MonoBehaviour
         string targetLayer = LayerMask.LayerToName(collision.gameObject.layer);
         if (targetLayer.Contains("Clear"))
         {
-            Debug.Log("Clear Zone");
-
             transform.forward = collision.gameObject.transform.forward;
+            
+            StageManager.instance.GameOver();
         }
     }
 }
