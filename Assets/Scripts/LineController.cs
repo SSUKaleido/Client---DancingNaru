@@ -75,15 +75,15 @@ public class LineController : MonoBehaviour
 
         if (!_isGameOver)
         {
-            curObj.transform.position += transform.forward * (speed * Time.deltaTime / 2);
-            curObj.transform.localScale += transform.forward * (speed * Time.deltaTime);
+            curObj.transform.position += curObj.transform.forward * (speed * Time.deltaTime / 2);
+            curObj.transform.localScale += Vector3.forward * (speed * Time.deltaTime);
         }
     }
 
     void InstantiateCube()
     {
         if(_isGameOver) return;
-        curObj = Instantiate(cubeObj, transform.position, Quaternion.Euler(transform.forward));
+        curObj = Instantiate(cubeObj, transform.position, transform.rotation);
     }
 
     public void StopPlayer()
