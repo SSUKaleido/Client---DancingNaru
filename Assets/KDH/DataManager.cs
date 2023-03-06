@@ -28,10 +28,23 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        DontDestroyOnLoad(gameObject);
         CheckLocalDataExist();
     }
     
+    // Deprecated
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            for (int i = 0; i < StageInfos.Count; i++)
+            {
+                print(StageInfos[i].StarCount);
+                print(StageInfos[i].Opened);
+                print(StageInfos[i].Cleared);
+            }
+        }
+    }
+
     /// <summary>
     ///   <para>Check if local data exists if local data don't exist init local data else load local data</para>
     /// </summary>
@@ -117,19 +130,8 @@ public class DataManager : MonoBehaviour
     {
         return StageInfos[stageNum];
     }
-
-    public void SetClearRate(float value)
-    {
-        StageInfos[stageNum].Cleared = 1;
-    }
-
-    public void AddStars(int value)
-    {
-        StageInfos[stageNum].StarCount += value;
-    }
 }
 
-[System.Serializable]
 public class StageInfo
 {
     private int starsCount;
