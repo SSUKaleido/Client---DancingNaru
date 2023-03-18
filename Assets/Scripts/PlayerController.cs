@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public GameObject canvas;   //게임 오버 시 UI 출현
+    public GameObject UI_GameOverCanvas;   //게임 오버 시 UI 출현
     private GameObject CameraPoint;
     private LineController LineControllerScript;    //LineController 스크립트
     private Rigidbody playerRigidBody;  //Rigidbody 속성
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
         CameraPoint = GameObject.Find("CameraPoint");
         LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
         playerRigidBody = GetComponent<Rigidbody>();
-        canvas.SetActive(false);
+        UI_GameOverCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,7 +51,10 @@ public class PlayerController : MonoBehaviour
     // 특정 장애물과 충돌했을 때 죽음 판정
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 3)
+        LayerMask collisionLayer = LayerMask.NameToLayer("Obstacle");
+        //int collisionIntLayer = 1 << collisionLayer;
+        
+        if (other.gameObject.layer == collisionLayer)
         {
             IsGameOver = true;
 
@@ -81,6 +85,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator ActiveGameUI()
     {
         yield return new WaitForSeconds(1.5f);
-        canvas.SetActive(true);
+        UI_GameOverCanvas.SetActive(true);
     }
 }

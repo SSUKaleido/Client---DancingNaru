@@ -12,20 +12,9 @@ public class PressButton: MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         canvas.SetActive(false);
     }
+    
     public void Back()
     {
-        // SceneManager.LoadScene("");
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene("TitleScene");
     }
 }
