@@ -18,7 +18,7 @@ public class StageTranistion : MonoBehaviour
 
         if (gameObject.transform.parent.name == "Map2")
         {
-            //SceneManager.LoadScene("stage2");
+            SceneManager.LoadScene("Stage_2_Scene");
         }
 
         if (gameObject.transform.parent.name == "Map3")
