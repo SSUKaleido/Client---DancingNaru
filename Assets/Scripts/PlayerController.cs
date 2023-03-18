@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public GameObject UI_GameOverCanvas;   //게임 오버 시 UI 출현
+    public TextMeshProUGUI rateText;
     private GameObject CameraPoint;
     private LineController LineControllerScript;    //LineController 스크립트
     private Rigidbody playerRigidBody;  //Rigidbody 속성
@@ -35,15 +38,15 @@ public class PlayerController : MonoBehaviour
         LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
         playerRigidBody = GetComponent<Rigidbody>();
         UI_GameOverCanvas.SetActive(false);
+        rateText = gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(IsGameOver)
-            GameOver();
+        GameOver();
         
-        if (isGameOver && !UI_GameOverCanvas.activeSelf)
+        if (isGameOver) //&& !UI_GameOverCanvas.activeSelf)
         {
             CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop; //카메라 멈춤
             StartCoroutine(ActiveGameUI()); // UI 화면 활성화
@@ -90,8 +93,9 @@ public class PlayerController : MonoBehaviour
         UI_GameOverCanvas.SetActive(true);
     }
 
-    void DataManager()
+    void InDataManager()
     {
-        
+        float Rate = DataManager.Instance.LoadStageData(1).Cleared;
+        rateText.text = Rate.ToString() + "%";
     }
 }
