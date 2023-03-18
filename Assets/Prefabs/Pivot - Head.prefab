@@ -92,7 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae85c4b3ccd52144b480ca2bb46f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  UI_GameOverCanvas: {fileID: 0}
+  deathEffect: {fileID: 1735371888, guid: 260f5a4da4739194490e338a7365a619, type: 3}
 --- !u!114 &-3386083625092736328
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,8 +40,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameOver();
-        if (isGameOver == true)
+        if(IsGameOver)
+            GameOver();
+        
+        if (isGameOver && !UI_GameOverCanvas.activeSelf)
         {
             CameraPoint.GetComponent<CameraController>().state = CameraController.CameraState.Stop; //카메라 멈춤
             StartCoroutine(ActiveGameUI()); // UI 화면 활성화
@@ -86,5 +88,10 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         UI_GameOverCanvas.SetActive(true);
+    }
+
+    void DataManager()
+    {
+        
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -105,8 +106,6 @@ public class DataManager : MonoBehaviour
             PlayerPrefs.SetFloat(stageNum + clearKey, StageInfos[i].Cleared);
             PlayerPrefs.SetInt(stageNum + openedKey, openedInfo);
         }
-        
-        print("Saved Data!");
     }
 
     /// <summary>
@@ -115,6 +114,8 @@ public class DataManager : MonoBehaviour
     /// <param name="stageNum"></param>
     public StageInfo LoadStageData(int stageNum)
     {
+        
+        
         return StageInfos[stageNum];
     }
 
