@@ -9,6 +9,8 @@ public class StageManager : MonoBehaviour
 
     public LineController controller;
 
+    public AudioSource audio;
+
     private void Awake()
     {
         if (instance == null)
@@ -29,6 +31,7 @@ public class StageManager : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
             {
+                audio.Play();
                 controller.StartLineProgress();
 
                 break;
