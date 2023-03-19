@@ -11,6 +11,9 @@ public class StageManager : MonoBehaviour
 
     public AudioSource audio;
 
+    public GameObject clearCube;
+    public GameObject startCube;
+
     private void Awake()
     {
         if (instance == null)
@@ -36,14 +39,22 @@ public class StageManager : MonoBehaviour
 
                 break;
             }
-            
-            yield return null;
 
+            yield return null;
         }
     }
 
     public void GameOver()
     {
-controller.StopPlayer();
+        controller.StopPlayer();
+        
+        float clearDist = Vector3.Distance(clearCube.transform.position, startCube.transform.position);
+        float userDist = Vector3.Distance(controller.transform.position, startCube.transform.position);
+
+        float resDist = userDist / clearDist;
+        resDist *= 100f;
+        
+        Debug.Log("RES Dist: " + resDist);
+        DataManager.Instance.SetClearRate(resDist);
     }
 }

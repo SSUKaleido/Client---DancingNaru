@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 500261280209731323}
   - component: {fileID: 500261280209731320}
   - component: {fileID: 500261280209731322}
+  - component: {fileID: -3386083625092736328}
   m_Layer: 0
   m_Name: Pivot - Head
   m_TagString: Untagged
@@ -91,7 +92,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae85c4b3ccd52144b480ca2bb46f51b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  UI_GameOverCanvas: {fileID: 0}
+  deathEffect: {fileID: 1735371888, guid: 260f5a4da4739194490e338a7365a619, type: 3}
+--- !u!114 &-3386083625092736328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500261280209731327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3600807eb54af3549adc7f9ce8bd8b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  particleObject: {fileID: 0}
+  mat:
+  - {fileID: 0}
+  - {fileID: 0}
+  crownObj: {fileID: 0}
 --- !u!1001 &500261280754618030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,6 +179,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1485483343888038470, guid: 15f561d86eae22545b44fda9ba50bf2d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a12b9024e7c8f24abf3bd79d028328a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f561d86eae22545b44fda9ba50bf2d, type: 3}
 --- !u!4 &1327497291807225067 stripped
