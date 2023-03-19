@@ -50,12 +50,15 @@ public class LineController : MonoBehaviour
         InstantiateCube();
     }
 
+    public bool TouchAllowed = true;
     void GetTouch()
     {
         
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
             if (_isGameOver) return;
+            
+            if (!TouchAllowed) return;
 
             if (_isTouching) return;
 
@@ -66,6 +69,8 @@ public class LineController : MonoBehaviour
         if (Input.touchCount > 0)
         {
             if (_isGameOver) return;
+
+            if (!TouchAllowed) return;
 
             if (_isTouching) return;
 
@@ -90,7 +95,7 @@ public class LineController : MonoBehaviour
     void InstantiateCube()
     {
         if(_isGameOver) return;
-        curObj = Instantiate(cubeObj, transform.position, transform.rotation);
+        curObj = Instantiate(cubeObj, transform.position, Quaternion.Euler(transform.forward));
     }
 
     public void StopPlayer()
@@ -104,8 +109,12 @@ public class LineController : MonoBehaviour
         if (targetLayer.Contains("Clear"))
         {
             transform.forward = collision.gameObject.transform.forward;
+
+            TouchAllowed = false;
             
-            StageManager.instance.GameOver();
+            StageManager.instance.GameOver(1);
+
+            StartCoroutine(GetComponent<PlayerController>().ActiveGameUI());
         }
     }
 

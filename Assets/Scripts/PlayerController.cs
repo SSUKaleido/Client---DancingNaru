@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // GameOverUI 
-    IEnumerator ActiveGameUI()
+    public IEnumerator ActiveGameUI()
     {
         yield return new WaitForSeconds(1.5f);
         UI_GameOverCanvas.SetActive(true);

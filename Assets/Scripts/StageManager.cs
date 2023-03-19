@@ -44,17 +44,26 @@ public class StageManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void GameOver(float dist = -1)
     {
-        controller.StopPlayer();
-        
-        float clearDist = Vector3.Distance(clearCube.transform.position, startCube.transform.position);
-        float userDist = Vector3.Distance(controller.transform.position, startCube.transform.position);
+        float resDist = 0;
+        if (dist == -1)
+        {
+            controller.StopPlayer();
 
-        float resDist = userDist / clearDist;
+            float clearDist = Vector3.Distance(clearCube.transform.position, startCube.transform.position);
+            float userDist = Vector3.Distance(controller.transform.position, startCube.transform.position);
+            
+            resDist = userDist / clearDist;
+        }
+        else
+        {
+            resDist = 1;
+            GameObject.Find("CameraPoint").GetComponent<CameraController>().state = CameraController.CameraState.Stop; 
+        }
+        
         resDist *= 100f;
         
-        Debug.Log("RES Dist: " + resDist);
         DataManager.Instance.SetClearRate(resDist);
     }
 }
