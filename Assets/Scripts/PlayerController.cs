@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject UI_GameOverCanvas;   //게임 오버 시 UI 출현
     public TextMeshProUGUI rateText;
+    public Image rateImg;
     private GameObject CameraPoint;
     private LineController LineControllerScript;    //LineController 스크립트
     private Rigidbody playerRigidBody;  //Rigidbody 속성
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
         LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
         playerRigidBody = GetComponent<Rigidbody>();
         UI_GameOverCanvas.SetActive(false);
-        rateText = gameObject.GetComponent<TextMeshProUGUI>();
+      //  rateText = gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
-        if (IsGrounded() == false)
+        if (IsGrounded() == false && !IsGameOver)
         {
             IsGameOver = true;
         }
@@ -91,11 +92,16 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         UI_GameOverCanvas.SetActive(true);
+        InDataManager();
     }
 
     void InDataManager()
     {
         float Rate = DataManager.Instance.LoadStageData(1).Cleared;
-        rateText.text = Rate.ToString() + "%";
+        int RateInt = Mathf.CeilToInt(Rate);
+
+        rateImg.fillAmount = Rate / 100f;
+        
+        rateText.text = RateInt + "%";
     }
 }

@@ -53,6 +53,8 @@ public class StageManager : MonoBehaviour
 
         float resDist = userDist / clearDist;
         resDist *= 100f;
+        
+        Debug.Log("RES Dist: " + resDist);
         DataManager.Instance.SetClearRate(resDist);
     }
 }
