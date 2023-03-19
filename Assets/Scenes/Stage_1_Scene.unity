@@ -12634,18 +12634,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 500261280209731322, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
-      propertyPath: rateImg
-      value: 
-      objectReference: {fileID: 190949995}
-    - target: {fileID: 500261280209731322, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
-      propertyPath: rateText
-      value: 
-      objectReference: {fileID: 190949996}
-    - target: {fileID: 500261280209731322, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
-      propertyPath: UI_GameOverCanvas
-      value: 
-      objectReference: {fileID: 190949994}
     - target: {fileID: 500261280209731326, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -12694,6 +12682,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pivot - Head
       objectReference: {fileID: 0}
+    - target: {fileID: 8402775610741178065, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
+      propertyPath: rateImg
+      value: 
+      objectReference: {fileID: 190949995}
+    - target: {fileID: 8402775610741178065, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
+      propertyPath: rateText
+      value: 
+      objectReference: {fileID: 190949996}
+    - target: {fileID: 8402775610741178065, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
+      propertyPath: UI_GameOverCanvas
+      value: 
+      objectReference: {fileID: 190949994}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 930c92c1e0997f143a1ced3e9379d2ad, type: 3}
 --- !u!1 &2070695592 stripped

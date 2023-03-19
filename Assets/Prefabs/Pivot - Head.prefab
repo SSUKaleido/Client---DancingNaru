@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 500261280209731321}
   - component: {fileID: 500261280209731323}
   - component: {fileID: 500261280209731320}
+  - component: {fileID: 8402775610741178065}
   m_Layer: 0
   m_Name: Pivot - Head
   m_TagString: Untagged
@@ -78,6 +79,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   cubeObj: {fileID: 1485483343888038468, guid: 15f561d86eae22545b44fda9ba50bf2d, type: 3}
+  _isGameOver: 0
+  TouchAllowed: 1
+--- !u!114 &8402775610741178065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500261280209731327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dae85c4b3ccd52144b480ca2bb46f51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UI_GameOverCanvas: {fileID: 0}
+  rateText: {fileID: 0}
+  rateImg: {fileID: 0}
+  deathEffect: {fileID: 1735371888, guid: 260f5a4da4739194490e338a7365a619, type: 3}
 --- !u!1001 &500261280754618030
 PrefabInstance:
   m_ObjectHideFlags: 0
