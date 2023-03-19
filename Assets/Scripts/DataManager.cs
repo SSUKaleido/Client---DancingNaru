@@ -119,9 +119,14 @@ public class DataManager : MonoBehaviour
         return StageInfos[stageNum];
     }
 
-    public void SetClearRate(float value)
+    public void SetClearRate(float value, int stage = -1)
     {
-        StageInfos[stageNum].Cleared = 1;
+        if (stage == -1)
+        {
+            stage = 1;
+        }
+            
+        StageInfos[stage].Cleared = value;
     }
 
     public void AddStars(int value)

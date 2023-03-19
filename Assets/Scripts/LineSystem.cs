@@ -20,9 +20,9 @@ public class LineSystem : MonoBehaviour
     [Tooltip("Used to calculate the width of the road.")]
     public float allowedTouchTime;
 
-    /*[Tooltip("")]
-    public GameObject RoadPrefap;*/ // ���Ŀ� ����� ���ؼ� ���� ����
-    
+    [Tooltip("Put the material")]
+    public Material RoadMaterial; // ���Ŀ� ����� ���ؼ� ���� ����
+
     [Tooltip("Enter the desired timing seconds and double-click the scene in Assets/Scenes to create a TurningPoint as a sub-object.")]
     public List<float> timeLine = new List<float>();
 
@@ -123,6 +123,10 @@ public class LineSystem : MonoBehaviour
                 else
                 {
                     RoadObj[i].transform.localScale = new Vector3(1 * (1 + allowedTouchTime), 1, TurningPoint[i + 1].z - beforePos.z + (1 * (1 + allowedTouchTime)));
+                }
+                if (RoadMaterial)
+                {
+                    RoadObj[i].GetComponent<MeshRenderer>().material = RoadMaterial;
                 }
                 beforePos = TurningPoint[i + 1];
             }

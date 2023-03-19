@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LineController : MonoBehaviour
@@ -10,7 +11,7 @@ public class LineController : MonoBehaviour
     public GameObject cubeObj;
 
     private GameObject curObj;
-    private bool _isGameOver = false;
+    public bool _isGameOver = false;
 
     private void Awake()
     {
@@ -32,11 +33,6 @@ public class LineController : MonoBehaviour
             GetTouch();
             MoveLine();
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                StopPlayer();
-            }
-
             yield return null;
         }
     }
@@ -55,10 +51,16 @@ public class LineController : MonoBehaviour
         InstantiateCube();
     }
 
+    public bool TouchAllowed = true;
     void GetTouch()
     {
+        
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
+            if (_isGameOver) return;
+            
+            if (!TouchAllowed) return;
+
             if (_isTouching) return;
 
             _isTouching = true;
@@ -67,6 +69,10 @@ public class LineController : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
+            if (_isGameOver) return;
+
+            if (!TouchAllowed) return;
+
             if (_isTouching) return;
 
             _isTouching = true;
@@ -76,6 +82,8 @@ public class LineController : MonoBehaviour
 
     void MoveLine()
     {
+        if (_isGameOver) return;
+        
         transform.position += transform.forward * (speed * Time.deltaTime);
 
         if (!_isGameOver)
@@ -88,11 +96,30 @@ public class LineController : MonoBehaviour
     void InstantiateCube()
     {
         if(_isGameOver) return;
-        curObj = Instantiate(cubeObj, transform.position, Quaternion.identity);
+        curObj = Instantiate(cubeObj, transform.position, Quaternion.Euler(transform.forward));
     }
 
     public void StopPlayer()
     {
         _isGameOver = true;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        string targetLayer = LayerMask.LayerToName(collision.gameObject.layer);
+        if (targetLayer.Contains("Clear"))
+        {
+            transform.forward = collision.gameObject.transform.forward;
+            InstantiateCube();
+
+            TouchAllowed = false;
+            
+            StageManager.instance.GameOver(1);
+
+            StartCoroutine(GetComponent<PlayerController>().ActiveGameUI());
+        }
+
+    }
+    
+    
 }

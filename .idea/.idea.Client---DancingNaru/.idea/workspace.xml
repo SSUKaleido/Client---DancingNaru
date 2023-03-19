@@ -28,6 +28,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -74,7 +75,9 @@
       <workItem from="1676006991569" duration="49000" />
       <workItem from="1676007899655" duration="4181000" />
       <workItem from="1676013979949" duration="322000" />
-      <workItem from="1676442587371" duration="1108000" />
+      <workItem from="1677807200515" duration="1674000" />
+      <workItem from="1679124252062" duration="1202000" />
+      <workItem from="1679234739158" duration="1014000" />
     </task>
     <servers />
   </component>

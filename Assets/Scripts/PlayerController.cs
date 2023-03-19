@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject UI_GameOverCanvas;   //게임 오버 시 UI 출현
     public TextMeshProUGUI rateText;
+    public Image rateImg;
     private GameObject CameraPoint;
     private LineController LineControllerScript;    //LineController 스크립트
     private Rigidbody playerRigidBody;  //Rigidbody 속성
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
         LineControllerScript = GameObject.Find("Pivot - Head").GetComponent<LineController>();
         playerRigidBody = GetComponent<Rigidbody>();
         UI_GameOverCanvas.SetActive(false);
-        rateText = gameObject.GetComponent<TextMeshProUGUI>();
+      //  rateText = gameObject.GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             IsGameOver = true;
 
-            Destroy(LineControllerScript);  //LineController 스크립트 작동 불가
+            LineControllerScript._isGameOver = true;
 
             // 충돌 시 애니메이션
             playerRigidBody.AddForce(new Vector3(0,1,0) * force, ForceMode.Impulse);   // 뒤로 튕겨나가는 효과
@@ -80,22 +82,27 @@ public class PlayerController : MonoBehaviour
 
     public void GameOver()
     {
-        if (IsGrounded() == false)
+        if (IsGrounded() == false && !IsGameOver)
         {
             IsGameOver = true;
         }
     }
 
     // GameOverUI 
-    IEnumerator ActiveGameUI()
+    public IEnumerator ActiveGameUI()
     {
         yield return new WaitForSeconds(1.5f);
         UI_GameOverCanvas.SetActive(true);
+        InDataManager();
     }
 
     void InDataManager()
     {
         float Rate = DataManager.Instance.LoadStageData(1).Cleared;
-        rateText.text = Rate.ToString() + "%";
+        int RateInt = Mathf.CeilToInt(Rate);
+
+        rateImg.fillAmount = Rate / 100f;
+        
+        rateText.text = RateInt + "%";
     }
 }
