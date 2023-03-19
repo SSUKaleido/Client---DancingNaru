@@ -10,7 +10,7 @@ public class LineController : MonoBehaviour
     public GameObject cubeObj;
 
     private GameObject curObj;
-    private bool _isGameOver = false;
+    public bool _isGameOver = false;
 
     private void Awake()
     {
@@ -52,8 +52,11 @@ public class LineController : MonoBehaviour
 
     void GetTouch()
     {
+        
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.Space))
         {
+            if (_isGameOver) return;
+
             if (_isTouching) return;
 
             _isTouching = true;
@@ -62,6 +65,8 @@ public class LineController : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
+            if (_isGameOver) return;
+
             if (_isTouching) return;
 
             _isTouching = true;
@@ -71,6 +76,8 @@ public class LineController : MonoBehaviour
 
     void MoveLine()
     {
+        if (_isGameOver) return;
+        
         transform.position += transform.forward * (speed * Time.deltaTime);
 
         if (!_isGameOver)
@@ -100,5 +107,10 @@ public class LineController : MonoBehaviour
             
             StageManager.instance.GameOver();
         }
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Destroyed");
     }
 }

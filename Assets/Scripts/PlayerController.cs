@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             IsGameOver = true;
 
-            Destroy(LineControllerScript);  //LineController 스크립트 작동 불가
+            LineControllerScript._isGameOver = true;
 
             // 충돌 시 애니메이션
             playerRigidBody.AddForce(new Vector3(0,1,0) * force, ForceMode.Impulse);   // 뒤로 튕겨나가는 효과
