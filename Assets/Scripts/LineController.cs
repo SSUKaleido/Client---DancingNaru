@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LineController : MonoBehaviour
@@ -87,8 +88,8 @@ public class LineController : MonoBehaviour
 
         if (!_isGameOver)
         {
-            curObj.transform.position += curObj.transform.forward * (speed * Time.deltaTime / 2);
-            curObj.transform.localScale += Vector3.forward * (speed * Time.deltaTime);
+            curObj.transform.position += transform.forward * (speed * Time.deltaTime / 2);
+            curObj.transform.localScale += transform.forward * (speed * Time.deltaTime);
         }
     }
 
@@ -109,6 +110,7 @@ public class LineController : MonoBehaviour
         if (targetLayer.Contains("Clear"))
         {
             transform.forward = collision.gameObject.transform.forward;
+            InstantiateCube();
 
             TouchAllowed = false;
             
@@ -116,10 +118,8 @@ public class LineController : MonoBehaviour
 
             StartCoroutine(GetComponent<PlayerController>().ActiveGameUI());
         }
-    }
 
-    private void OnDestroy()
-    {
-        Debug.Log("Destroyed");
     }
+    
+    
 }
