@@ -12,6 +12,7 @@ public class LineController : MonoBehaviour
 
     private GameObject curObj;
     public bool _isGameOver = false;
+    public bool _isCleared = false;
 
     private void Awake()
     {
@@ -89,14 +90,15 @@ public class LineController : MonoBehaviour
         if (!_isGameOver)
         {
             curObj.transform.position += transform.forward * (speed * Time.deltaTime / 2);
-            curObj.transform.localScale += transform.forward * (speed * Time.deltaTime);
+            Debug.Log(curObj.transform.forward);
+            curObj.transform.localScale += Vector3.forward * (speed * Time.deltaTime);
         }
     }
 
-    void InstantiateCube()
+    void InstantiateCube(bool CreateByForce = false)
     {
-        if(_isGameOver) return;
-        curObj = Instantiate(cubeObj, transform.position, Quaternion.Euler(transform.forward));
+        if(_isGameOver && !CreateByForce) return;
+        curObj = Instantiate(cubeObj, transform.position, transform.rotation);
     }
 
     public void StopPlayer()
@@ -110,12 +112,11 @@ public class LineController : MonoBehaviour
         if (targetLayer.Contains("Clear"))
         {
             transform.forward = collision.gameObject.transform.forward;
-            InstantiateCube();
+            InstantiateCube(true);
 
             TouchAllowed = false;
             
             StageManager.instance.GameOver(1);
-
             StartCoroutine(GetComponent<PlayerController>().ActiveGameUI());
         }
 

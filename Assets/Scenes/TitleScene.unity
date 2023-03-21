@@ -1749,8 +1749,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 860214638}
   m_HandleRect: {fileID: 860214637}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.558952
+  m_Value: -0.00000032229786
+  m_Size: 0.55894893
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2616,7 +2616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -532, y: 1515}
+  m_AnchoredPosition: {x: -532, y: 1515.0004}
   m_SizeDelta: {x: 1080, y: 3435}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1381524911 stripped
@@ -2857,9 +2857,9 @@ MonoBehaviour:
   scrollbar: {fileID: 826825946}
   _camera: {fileID: 1453790405}
   map:
-  - {r: 0.9811321, g: 0.83879596, b: 0.6608758, a: 1}
-  - {r: 0.627451, g: 0.7176471, b: 0.7490196, a: 1}
-  - {r: 0.7411765, g: 0.8588236, b: 0.8235295, a: 1}
+  - {r: 0.9811321, g: 0.89850605, b: 0.7096238, a: 1}
+  - {r: 0.56289303, g: 0.8871981, b: 1, a: 1}
+  - {r: 0.54402506, g: 1, b: 0.8632076, a: 1}
   duration: 0.4
   t: 0.007
 --- !u!114 &1453790408

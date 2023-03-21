@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
             LineControllerScript._isGameOver = true;
 
             // 충돌 시 애니메이션
+            playerRigidBody.constraints = RigidbodyConstraints.None;
+            
             playerRigidBody.AddForce(new Vector3(0,1,0) * force, ForceMode.Impulse);   // 뒤로 튕겨나가는 효과
             playerRigidBody.AddTorque(new Vector3(0,1,0) * 100, ForceMode.Impulse); // 회전하는 효과
             Instantiate(deathEffect, transform.position, Quaternion.identity);  //파티클 효과
